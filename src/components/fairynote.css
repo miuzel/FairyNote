@@ -1,0 +1,125 @@
+/* src/content.css */
+
+/* @import '~antd/dist/antd.css'; */
+
+.my-extension {
+    padding: 20px;
+}
+
+.my-extension h1 {
+    color: #000;
+}
+
+#extensionlayout {
+    display: flex;
+    height: 100vh;
+    flex-flow: column nowrap;
+}
+
+#extensionheader {
+    line-height: 42px;
+    height: 44px;
+    margin: 0px;
+    font-size: 18px;
+    padding: 0px;
+    color: #eee;
+    overflow: hidden;
+}
+
+#extensioncontent {
+    padding: 15px 10px 10px 10px;
+    flex: 2 auto;
+    overflow-y: scroll;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e1ffff+0,e1ffff+7,e1ffff+12,fdffff+12,e6f8fd+30,c8eefb+54,bee4f8+75,b1d8f5+100;Blue+Pipe+%232 */
+    background: rgb(225, 255, 255);
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(225, 255, 255, 1) 0%, rgba(225, 255, 255, 1) 7%, rgba(225, 255, 255, 1) 12%, rgba(253, 255, 255, 1) 12%, rgba(230, 248, 253, 1) 30%, rgba(200, 238, 251, 1) 54%, rgba(190, 228, 248, 1) 75%, rgba(177, 216, 245, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(225, 255, 255, 1) 0%, rgba(225, 255, 255, 1) 7%, rgba(225, 255, 255, 1) 12%, rgba(253, 255, 255, 1) 12%, rgba(230, 248, 253, 1) 30%, rgba(200, 238, 251, 1) 54%, rgba(190, 228, 248, 1) 75%, rgba(177, 216, 245, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(225, 255, 255, 1) 0%, rgba(225, 255, 255, 1) 7%, rgba(225, 255, 255, 1) 12%, rgba(253, 255, 255, 1) 12%, rgba(230, 248, 253, 1) 30%, rgba(200, 238, 251, 1) 54%, rgba(190, 228, 248, 1) 75%, rgba(177, 216, 245, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1ffff', endColorstr='#b1d8f5', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+#extensioncontent::-webkit-scrollbar {
+    width: 4px;
+    background-color: #333;
+}
+
+#extensioncontent::-webkit-scrollbar-thumb {
+    background-color: #333;
+}
+
+#extensioncontent::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+#extensionfooter {
+    height: 20px;
+    background: #333;
+    padding: 0 10px 0 10px;
+    color: #eee;
+}
+
+.ant-timeline-item-head {
+    background: rgba(0, 0, 0, 0)
+}
+
+#pagetitle {
+    font-weight: bold;
+    padding: 0px 10px;
+}
+
+.menubutton {
+    padding: 10px;
+    font-size: 20px;
+    transition: all 0.4s ease-in-out;
+}
+
+.menubutton:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.content-card {
+    perspective: 200px;
+}
+
+.content-card-enter {
+    opacity: 0.01;
+    transform: rotateX(-90deg);
+    max-height: 0;
+}
+
+.content-card-enter.content-card-enter-active {
+    opacity: 1;
+    transform: none;
+    max-height: 150px;
+    transition: all 0.4s cubic-bezier(.36, -0.64, .34, 1.76) , max-height 0.15s ease-in;
+}
+
+.content-card-leave {
+    opacity: 1;
+    transform: none;
+    max-height: 150px;
+}
+
+.content-card-leave.content-card-leave-active {
+    opacity: 0.01;
+    max-height: 0;
+    transform: rotateX(-90deg);
+    transition: all 0.3s cubic-bezier(.36, -0.64, .34, 1.76);
+}
+
+.ant-drawer-content-wrapper {
+    position: absolute !important;
+}
+.ant-drawer-left{
+    transition: width 0s ease 0.3s !important;
+}
+.ant-drawer-left.ant-drawer-open{
+    transition: none !important;
+}
