@@ -1,0 +1,139 @@
+{
+    "extensionName":{
+        "message": "FairyNote",
+        "description": "Extension name"
+    },
+    "extensionDescription" :{
+        "message": "For taking note with time links on youtube live or videos. Used in MOOC class, TED sessions, music live shows, interviews, documentaries, etc. You can copy the output msg and put it in the comment or description of the video.",
+        "description": "Extension description"
+    },
+    "extensionTooltip": {
+        "message": "Click to toggle FairyNote panel. \n Press Ctrl(Win)/Command(Mac)+Shift+A to create new item to the list using the current video progress. \n Press Ctrl(Win)/Command(Mac)+Shift+Z to copy the output text to your clipboard"
+    },
+    "addNewLine": {
+        "message": "add a new line at the bottom"
+    },
+    "extensionReady":{
+        "message": "FairyNote is ready. Click the extension button to open the panel. Please use it in a video or a live page."
+    },
+    "host":{
+        "message": "Host"
+    },
+    "guest":{
+        "message": "Guest"
+    },
+    "confirmReset":{
+        "message": "Are you sure that you want to clear the panel?"
+    },
+    "saveSuccess":{
+        "message": "FairyNote: Saved."
+    },
+    "sthWrong":{
+        "message": "Oops, something went wrong."
+    },
+    "cannotFindVideoID":{
+        "message": "Cannot find videoID, may be you are not on a video page."
+    },
+    "resetSuccess":{
+        "message":  "FairyNote: Reset done."
+    },
+    "loadSuccess":{
+        "message":  "FairyNote: Load done."
+    },
+    "pleaseGotoVideo":{
+        "message":  "FairyNote: Please goto video page."
+    },
+    "confirmLoad":{
+        "message": "FairyNote: Are you sure you want to load saved data?"
+    },
+    "copied":{
+        "message": "FairyNote: Copied to your clipboard"
+    },
+    "currentTime":{
+        "message": "CURRENT"
+    },
+    "latestTime":{
+        "message": "LATEST"
+    },
+    "output":{
+        "message": "COPY"
+    },
+    "save":{
+        "message": "SAVE"
+    },
+    "load":{
+        "message": "LOAD"
+    },
+    "reset":{
+        "message": "RESET"
+    },
+    "addOneLine":{
+        "message": "Add one row using current timestamp."
+    },
+    "copyOutput":{
+        "message": "Copy output text"
+    },
+    "upOneCard":{
+        "message": "Focus on previous card"
+    },
+    "downOneCard":{
+        "message": "Focus on next card"
+    },
+    "plusOneSecond":{
+        "message": "+1 Second"
+    },
+    "minusOneSecond":{
+        "message": "-1 Second"
+    },
+    "setHost": {
+        "message": "Set current speaker as \"Host\""
+    },
+    "navigate": {
+        "message": "Navigate to the beginning of the active card."
+    },
+    "latest": {
+        "message": "Navigate to the latest of the stream (Live only)"
+    },
+    "dupCard":{
+        "message": "Copy card"
+    },
+    "toggle":{
+        "message": "Toggle "
+    },
+    "help":{
+        "message": "HELP"
+    },
+    "outputText":{
+        "message": "Organized Text"
+    },
+    "copyAnyTime":{
+        "message": "to copy text anytime"
+    },
+    "comment":{
+        "message": "Memo"
+    },
+    "shortDescription":{
+        "message": "Description"
+    },
+    "cardTools":{
+        "message": "Tools"
+    },
+    "copy":{
+        "message": "Copy"
+    },
+    "jump":{
+        "message": "Navigate to the beginning of this card."
+    },
+    "latency":{
+        "message": "Latency"
+    },
+    "delete":{
+        "message": "Delete"
+    },
+    "pickTime":{
+        "message": "Pick Time"
+    },
+    "OK":{
+        "message": "OK"
+    }
+}

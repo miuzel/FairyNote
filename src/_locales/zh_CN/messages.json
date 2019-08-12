@@ -1,0 +1,142 @@
+{
+    "extensionName":{
+        "message": "FairyNote",
+        "description": "Extension name"
+    },
+    "extensionDescription" :{
+        "message": "FairyNote用于记录youtube直播或视频中的时间链接。 用于MOOC课程，TED课程，音乐现场表演，访谈，纪录片等。您可以复制输出信息并将其放入视频的评论或说明中。",
+        "description": "Extension description"
+    },
+    "extensionTooltip": {
+        "message": "点击打开/关闭FairyNote，\n 按Ctrl(Win)/Command(Mac)+Shift+A快速按当前时间添加条目 \n 按Ctrl(Win)/Command(Mac)+Shift+Z复制当前内容"
+    },
+    "addNewLine": {
+        "message": "Add a new line at the bottom"
+    },
+    "copyToClipboard":{
+        "message": "Copy to clipboard"
+    },
+    "extensionReady":{
+        "message": "FairyNote已经准备完毕，点击插件栏的仙女棒按钮打开，请在视频或直播页面中使用。"
+    },
+    "host":{
+        "message": "主持人"
+    },
+    "guest":{
+        "message": "嘉宾"
+    },
+    "confirmReset":{
+        "message": "FairyNote：确定要清空?"
+    },
+    "saveSuccess":{
+        "message": "FairyNote: 保存成功."
+    },
+    "sthWrong":{
+        "message": "啊呀，好像出错了"
+    },
+    "cannotFindVideoID":{
+        "message": "找不到video ID，请确保您在视频页面上。"
+    },
+    "resetSuccess":{
+        "message":  "FairyNote: 清空成功."
+    },
+    "loadSuccess":{
+        "message":  "FairyNote: 加载成功."
+    },
+    "pleaseGotoVideo":{
+        "message":  "FairyNote: 请打开播放页面再使用."
+    },
+    "confirmLoad":{
+        "message": "FairyNote: 确定要加载之前保存的内容吗？"
+    },
+    "copied":{
+        "message": "FairyNote: 已复制到您的剪贴板"
+    },
+    "currentTime":{
+        "message": "当前时间"
+    },
+    "latestTime":{
+        "message": "最新时间"
+    },
+    "output":{
+        "message": "输出"
+    },
+    "save":{
+        "message": "保存"
+    },
+    "load":{
+        "message": "读取"
+    },
+    "reset":{
+        "message": "清空"
+    },
+    "addOneLine":{
+        "message": "以当前时间添加一行"
+    },
+    "copyOutput":{
+        "message": "复制当前输出文本"
+    },
+    "upOneCard":{
+        "message": "转到上一张卡片"
+    },
+    "downOneCard":{
+        "message": "转到下一张卡片"
+    },
+    "plusOneSecond":{
+        "message": "当前卡片向后移动一秒"
+    },
+    "minusOneSecond":{
+        "message": "当前卡片向前移动一秒"
+    },
+    "setHost": {
+        "message": "设置当前卡片发言人为主持人"
+    },
+    "navigate": {
+        "message": "跳转视频到当前卡片开始处"
+    },
+    "latest": {
+        "message": "跳转到视频最新处（仅限Live）"
+    },
+    "dupCard":{
+        "message": "复制当前卡片"
+    },
+    "toggle":{
+        "message": "打开/隐藏"
+    },
+    "help":{
+        "message": "帮助"
+    },
+    "outputText":{
+        "message": "整理好的文本"
+    },
+    "copyAnyTime":{
+        "message": "可以随时拷贝"
+    },
+    "comment":{
+        "message": "备注"
+    },
+    "shortDescription":{
+        "message": "内容简要说明"
+    },
+    "cardTools":{
+        "message": "卡片工具"
+    },
+    "jump":{
+        "message": "跳转到这个时间点"
+    },
+    "copy":{
+        "message": "复制"
+    },
+    "latency":{
+        "message": "延时"
+    },
+    "delete":{
+        "message": "删除"
+    },
+    "pickTime":{
+        "message": "选择时间"
+    },
+    "OK":{
+        "message": "OK"
+    }
+}

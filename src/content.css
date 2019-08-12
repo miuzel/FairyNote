@@ -1,0 +1,26 @@
+/* src/content.css */
+@import '~antd/dist/antd.css';
+
+.my-extension{
+    padding: 20px;
+}
+
+.my-extension h1{
+    color: #000;
+}
+
+#pageheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#extensioncontent {
+    top: 75px;
+    position: relative;
+    margin-left: 10px;
+    padding: 5px;
+}
+
