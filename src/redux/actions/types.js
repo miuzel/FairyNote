@@ -24,4 +24,6 @@ export const TOGGLE_MENU = 'TOGGLE_MENU'
 export const SAVE_SETTINGS = 'SAVE_SETTINGS'
 export const LOAD_SETTINGS = 'LOAD_SETTINGS'
 
+export const TOGGLE_SYNC_TIMER = 'TOGGLE_SYNC_TIMER'
+
 export const TEXT_COPY = 'TEXT_COPY'

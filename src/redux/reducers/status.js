@@ -1,4 +1,5 @@
 import * as types from '../actions/types'
+import {startRevealMagicWord,stopRevealMagicWord} from '../synctimer'
 
 const initialState = {
     mode: '',
@@ -27,7 +28,17 @@ export default (state = initialState, { type, payload }) => {
                 ...state,
                 showingSettings: !state.showingSettings
             }
-            
+        case types.TOGGLE_SYNC_TIMER:
+            if(payload.isSyncStarted ){
+                startRevealMagicWord()
+            }else {
+                stopRevealMagicWord()
+            }
+            return {
+                ...state,
+                isSyncStarted: payload.isSyncStarted
+            }
+
         case types.TOGGLE_MENU:
             return {
                 ...state,

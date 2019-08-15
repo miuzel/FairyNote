@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {toggleMenu,timelineLoadAsync,timelineSave,timelineReset,toggleText,toggleHelp,toggleSettings} from '../redux/actions'
 import Mode from './settings/Mode';
 import AutoNavigate from './settings/AutoNavigate'
+import FairyNoteSyncTimer from './FairyNoteSyncTimer';
 
 const {SubMenu} = Menu
 
@@ -96,6 +97,7 @@ const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsy
             getPopupContainer={() => container} mode="vertical">
             {loadMenus(menus)}
         </Menu>
+        <FairyNoteSyncTimer style={{ lineHeight: "24px" ,padding: "10px"}}/>
         </Drawer>
 
         </div>

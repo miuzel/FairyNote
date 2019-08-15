@@ -1,7 +1,7 @@
 {
-  "name": "__MSG_extensionName__2",
+  "name": "FairyNote2",
   "description": "__MSG_extensionDescription__",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "manifest_version": 2,
   "background": {
     "scripts": ["app/background.js"],

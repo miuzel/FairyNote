@@ -12,6 +12,12 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2.
 
+### Changes 2.0.2
+
+- New Feature: Magic LIVE Sync.
+  
+  When one is broadcasting while his audiences are watching the same video and talking in a online chatroom. Pass the magic word to your friends they can sync the progress of the video as is you are watching together side by side
+
 ### Changes 1.4.3 -> 2.0.1
 
 - GUI Improvement

@@ -237,5 +237,11 @@
     },
     "zh_CN":{
         "message": "中文"
+    },
+    "synctimer": {
+        "message": "LIVE Sync"
+    },
+    "magicword": {
+        "message": "LIVE Sync magic word"
     }
 }

@@ -87,12 +87,14 @@ export const videoGotoEnd = actionCreatorCreator(types.VIDEO_GOTO_END)
 
 export const modeUpdate = actionCreatorCreator(types.MODE_UPDATE)
 export const settingsUpdate = actionCreatorCreator(types.SETTINGS_UPDATE)
+export const toggleSyncTimer = actionCreatorCreator(types.TOGGLE_SYNC_TIMER)
 
 export const dataUpdate = actionCreatorCreator(types.DATA_UPDATE)
 export const toggleText = actionCreatorCreator(types.TOGGLE_TEXT)
 export const toggleHelp = actionCreatorCreator(types.TOGGLE_HELP)
 export const toggleSettings = actionCreatorCreator(types.TOGGLE_SETTINGS)
 export const toggleMenu = actionCreatorCreator(types.TOGGLE_MENU)
+
 export const saveSettings = actionCreatorCreator(types.SAVE_SETTINGS)
 export const loadSettings = actionCreatorCreator(types.LOAD_SETTINGS)
 
