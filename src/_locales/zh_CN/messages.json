@@ -237,5 +237,11 @@
     },
     "zh_CN":{
         "message": "中文"
+    },
+    "synctimer": {
+        "message": "直播同步"
+    },
+    "magicword": {
+        "message": "直播同步咒语"
     }
 }

@@ -9,7 +9,8 @@ let initialState = {
         showingHelp: false,
         showingSettings: false,
         showingText: false,
-        showingMenu: false
+        showingMenu: false,
+        isSyncStarted: false
     },
     data: {
         actors: [i18nMsg("host")],
