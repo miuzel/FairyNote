@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2.
 
+### Change 2.0.3
+
+- Fix Command+Shift+A cannot focus textarea in Chrome 77
+
 ### Changes 2.0.2
 
 - New Feature: Magic LIVE Sync.

@@ -29,20 +29,22 @@ export class FairyNoteTimelineItem extends Component {
       }
     } 
     setTimeout(animate,10)
-
   }
   componentDidMount(){
     if (this.textArea ){
-      this.textArea.current.textArea.current.textAreaRef.select()
       this.scroll()
+      if(this.selectTimeout){
+        clearTimeout(this.selectTimeout);
+      }
+      this.selectTimeout = setTimeout(() => this.textArea.current.textArea.current.textAreaRef.select(),0)
       // forwarded to the real textArea
     }
   }
   componentDidUpdate(prevProps){
     if (this.textArea && this.props.active && !prevProps.active){
-      this.textArea.current.textArea.current.textAreaRef.select()
       // forwarded to the real textArea
       this.scroll()
+      this.textArea.current.textArea.current.textAreaRef.select()
     }
   }
   textArea = React.createRef()
