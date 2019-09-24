@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2.
 
+### Change 2.1.0
+
+- Add a set of new shortcuts to adjust time against latency issues. Select a timeline item, then use Ctrl/Command + Shift + , /  Ctrl/Command + Shift + . to add time latency deltas. The delta will be applied on all items following the current one. Enjoy the update. 
+
 ### Change 2.0.3
 
 - Fix Command+Shift+A cannot focus textarea in Chrome 77
