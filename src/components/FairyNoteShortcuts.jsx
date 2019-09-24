@@ -82,6 +82,16 @@ const getShortcuts = ({
             action: () => itemUpdate({ deltaTime: -1 })
         },
         {
+            name: "plusLatency",
+            key: "Command/Ctrl + Shift + .",
+            action: () => itemUpdate({ deltaTimeLatency: 1 })
+        },
+        {
+            name: "minusLatency",
+            key: "Command/Ctrl + Shift + ,",
+            action: () => itemUpdate({ deltaTimeLatency: -1 })
+        },
+        {
             name: "save",
             key: "Command/Ctrl + Shift + S",
             action: () => timelineSave()

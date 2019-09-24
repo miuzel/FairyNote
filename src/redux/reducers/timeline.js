@@ -133,6 +133,20 @@ export default (state = initialState, { type, payload }) => {
             if (payload.item) {
                 newItem = {...state.items[updateIndex], ...payload.item}
             } else {
+                if (payload.deltaTimeLatency !== undefined) {
+                    nextState.items = state.items.map((x,i)=>{
+                        if(i >= updateIndex){
+                            x.timestamp += payload.deltaTimeLatency
+                        }
+                        return x
+                    } )
+                    newItem = state.items[updateIndex]
+                    videoElement.currentTime = newItem.timestamp
+                    if(payload.autoSave) {
+                        saveState(nextState,true)
+                    }
+                    return nextState
+                }
                 if (payload.deltaTime !== undefined) {
                     newItem = state.items[updateIndex]
                     newItem.timestamp += payload.deltaTime

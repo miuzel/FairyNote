@@ -78,3 +78,7 @@ body {
 .ant-select-dropdown {
   z-index: 5510 !important;
 }
+
+.ant-timeline-item-head {
+  border-radius: 0.5em;
+}

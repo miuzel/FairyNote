@@ -91,6 +91,12 @@
     "minusOneSecond":{
         "message": "-1 Second"
     },
+    "plusLatency":{
+        "message": "In case of frame drop, +1 Second to this and all following items 🔥NEW FEATURE"
+    },
+    "minusLatency":{
+        "message": "In case of frame drop, -1 Second from this and all following items 🔥NEW FEATURE"
+    },
     "setHost": {
         "message": "Set current speaker as \"Host\""
     },

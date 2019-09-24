@@ -98,7 +98,7 @@ export class FairyNoteTimelineItem extends Component {
     )
     let actor = (
       <MyComplete
-        width="108px"
+        width="118px"
         prefix="user"
         placeholder={i18nMsg("guest")}
         value={item.actor}
@@ -113,7 +113,7 @@ export class FairyNoteTimelineItem extends Component {
     )
     let comment = (
       <MyComplete
-        width="140px"
+        width="160px"
         prefix="user"
         placeholder={i18nMsg("comment")}
         value={item.comment}
@@ -167,21 +167,17 @@ export class FairyNoteTimelineItem extends Component {
           {text}
         </Card><span id="cardcontrol" style={{position:"fixed",top:5,right: 0,margin: "0 10px"}}
               width="auto">
-                <Tooltip placement="topRight" title={i18nMsg("latency")}
-                  getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => { }} disabled tabIndex="-1"><Icon type="thunderbolt" theme="filled" /></Button>
-                </Tooltip>
                 <Tooltip placement="topRight" title={i18nMsg("jump")}
                   getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => videoGoto({ goto: item.timestamp })} tabIndex="-1"><Icon type="play-square" theme="filled" /></Button>
+                  <Button size="small" type="link" onClick={() => videoGoto({ goto: item.timestamp })} tabIndex="-1"><Icon type="play-square"  /></Button>
                 </Tooltip>
                 <Tooltip placement="topRight" title={i18nMsg("copy")}
                   getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => itemCopy({ index: index, item: item })} tabIndex="-1"><Icon type="copy" theme="filled" /></Button>
+                  <Button size="small" type="link" onClick={() => itemCopy({ index: index, item: item })} tabIndex="-1"><Icon type="copy"  /></Button>
                 </Tooltip>
                 <Tooltip placement="topRight" title={i18nMsg("delete")}
                   getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => itemDel({ index: index })} tabIndex="-1"><Icon type="close"  /></Button>
+                  <Button size="small" type="link" onClick={() => itemDel({ index: index })} tabIndex="-1"><Icon type="close-circle"  /></Button>
                 </Tooltip>
               </span>
         </div>
