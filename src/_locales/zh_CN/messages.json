@@ -70,6 +70,15 @@
     "save":{
         "message": "保存"
     },
+    "import":{
+        "message": "导入CSV文件"
+    },
+    "export":{
+        "message": "导出CSV文件"
+    },
+    "importSuccess": {
+        "message": "FairyNote: CSV数据导入成功，但是尚未保存，你先在可以马上利用菜单功能 文件 > 读取 来取消本次导入"
+    },
     "cancel":{
         "message": "取消"
     },
