@@ -1,6 +1,8 @@
 export const TIMELINE_SAVE = 'TIMELINE_SAVE'
 export const TIMELINE_LOAD = 'TIMELINE_LOAD'
 export const TIMELINE_RESET = 'TIMELINE_RESET'
+export const TIMELINE_EXPORT = 'TIMELINE_EXPORT'
+export const TIMELINE_IMPORT = 'TIMELINE_IMPORT'
 
 export const ITEM_ADD = 'ITEM_ADD'
 export const ITEM_COPY = 'ITEM_COPY'

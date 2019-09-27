@@ -69,11 +69,34 @@ export const timelineLoadAsync = (payload) => (dispatch,getState) => {
   })
 }
 
+export const timelineImportAsync = (payload) => dispatch => {
+  let fileChooser = document.createElement("input")
+  fileChooser.type = 'file'
+  fileChooser.addEventListener('change', function (e) {
+    let f = e.target.files[0]
+    if (f) {
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        let data = e.target.result
+        if (!payload.quiet){
+          message.success(i18nMsg("importSuccess"));
+        }
+        dispatch(timelineImport({
+          csvdata: data
+        }))
+      }
+      reader.readAsText(f)
+    }
+  });
+  fileChooser.click()
+}
 
 
 export const timelineSave = actionCreatorCreator(types.TIMELINE_SAVE)
 export const timelineLoaded = actionCreatorCreator(types.TIMELINE_LOAD)
 export const timelineReset = actionCreatorCreator(types.TIMELINE_RESET)
+export const timelineExport = actionCreatorCreator(types.TIMELINE_EXPORT)
+export const timelineImport = actionCreatorCreator(types.TIMELINE_IMPORT)
 
 export const itemAdd = actionCreatorCreatorWithData(types.ITEM_ADD)
 export const itemCopy = actionCreatorCreatorWithData(types.ITEM_COPY)

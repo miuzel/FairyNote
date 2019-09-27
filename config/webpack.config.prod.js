@@ -41,7 +41,7 @@ module.exports = {
     devtool: shouldUseSourceMap ? 'source-map' : false,
     entry: {
         content: [require.resolve('./polyfills'), paths.appContentJs],
-        test: [require.resolve('./polyfills'), paths.appTestJs]
+        //test: [require.resolve('./polyfills'), paths.appTestJs]
     },
     output: {
         // The build folder.
@@ -193,6 +193,24 @@ module.exports = {
         }]
     },
     optimization: {
-        minimizer: [new UglifyJsPlugin()],
+        minimizer: [new UglifyJsPlugin({
+            minify: (file, sourceMap) => {
+                console.log(file)
+                // https://github.com/mishoo/UglifyJS2#minify-options
+                const uglifyJsOptions = {
+                    output: {
+                      comments: false,
+                    }
+                };
+      
+                if (sourceMap) {
+                  uglifyJsOptions.sourceMap = {
+                    content: sourceMap,
+                  };
+                }
+      
+                return require('terser').minify(file, uglifyJsOptions);
+              },
+          })],
     },
 };
