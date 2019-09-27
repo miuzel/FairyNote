@@ -5,7 +5,7 @@ import { Switch ,Icon, Input } from 'antd'
 import { i18nMsg } from '../constants'
 import { getVideoTimeFromMagicWord } from '../redux/synctimer'
 import { toggleSyncTimer } from '../redux/actions'
-console.log(toggleSyncTimer)
+
 export class FairyNoteSyncTimer extends Component {
     state = {
         magicword: ""

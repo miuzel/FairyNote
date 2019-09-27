@@ -2,20 +2,23 @@
 // Called when the user clicks on the page action
 chrome.pageAction.onClicked.addListener(function (tab) {
    // Send a message to the active tab
-   chrome.tabs.getSelected(null, function (tab) {
-      chrome.tabs.sendMessage(
-         tab.id,
-         { "message": "clicked_page_action" }
-      );
-   });
+   chrome.tabs.sendMessage(
+      tab.id,
+      { "message": "clicked_page_action" }
+   );
 });
 // Put page action icon on all tabs
-chrome.tabs.onUpdated.addListener(function (tabId) {
-   chrome.pageAction.show(tabId);
-});
-
-chrome.tabs.getSelected(null, function (tab) {
-   chrome.pageAction.show(tab.id);
+// chrome.tabs.onUpdated.addListener(function (tabId) {
+//    chrome.pageAction.show(tabId);
+// });
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+   if(changeInfo.status === 'complete'){
+      if (tab.url.match(/https:\/\/www.youtube.com\/watch\?.*/)) {
+          chrome.pageAction.show(tabId);
+      } else {
+          chrome.pageAction.hide(tabId);
+      }
+   }
 });
 
 // chrome.commands.onCommand.addListener(function (command) {
@@ -30,15 +33,15 @@ chrome.tabs.getSelected(null, function (tab) {
 //    });
 // });
 
-chrome.runtime.onInstalled.addListener(function () {
-   chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-      console.log("Page Change fired");
-      chrome.declarativeContent.onPageChanged.addRules([{
-         conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { urlContains: "youtube.com" },
-         })
-         ],
-         actions: [new chrome.declarativeContent.ShowPageAction()]
-      }]);
-   });
-});
+// chrome.runtime.onInstalled.addListener(function () {
+//    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+//       console.log("Page Change fired");
+//       chrome.declarativeContent.onPageChanged.addRules([{
+//          conditions: [new chrome.declarativeContent.PageStateMatcher({
+//             pageUrl: { urlContains: "youtube.com" },
+//          })
+//          ],
+//          actions: [new chrome.declarativeContent.ShowPageAction()]
+//       }]);
+//    });
+// });
