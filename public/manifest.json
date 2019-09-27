@@ -4,11 +4,10 @@
   "version": "2.1.0",
   "manifest_version": 2,
   "background": {
-    "scripts": ["app/background.js"],
-    "persistent": false
+    "scripts": ["app/background.js"]
   },
   "default_locale": "zh_CN",
-  "permissions": ["declarativeContent" , "storage" ],
+  "permissions": [ "tabs", "storage" ],
   "page_action": {
     "default_title": "__MSG_extensionTooltip__",
     "default_icon": {
