@@ -5,7 +5,9 @@ import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
 import { getFullText, copyTextToClipboard, getVideoId } from '../../utils'
 import { i18nMsg } from '../../constants'
-
+import csvstringify from 'csv-stringify'
+import csvparse from 'csv-parse/lib/sync'
+import moment from 'moment'
 const initialState = []
 
 const getVideo = () => document.querySelector('#primary #player video.video-stream')
@@ -202,11 +204,47 @@ export default (state = initialState, { type, payload }) => {
         case types.TIMELINE_SAVE:
             saveState(state)
             return state
+        case types.TIMELINE_EXPORT:
 
+            csvstringify(state.items.map(
+                x => [moment.utc(0).seconds(x.timestamp).format("HH:mm:ss"),
+                x.actor,
+                x.comment,
+                x.text]
+            ), (_, output) => {
+                let link = document.createElement("a");
+                link.download = "content_"+ getVideoId() +".csv";
+                link.href = "data:text/csv," + output
+                link.click();
+            })
+            return state
+
+        case types.TIMELINE_IMPORT:
+            console.log(payload)
+            nextState.items = csv2items(payload.csvdata)
+            return nextState
+            
         default:
             return state
     }
 }
+
+
+const csv2items = csv => {
+    const records = csvparse(csv, {
+    columns: false,
+    skip_empty_lines: true
+    })
+    return records.map(x => ( {
+            timestamp: (moment(x[0],"HH:mm:ss") - moment('00:00:00','HH:mm:ss')) / 1000,
+            actor: x[1],
+            comment: x[2],
+            text: x[3],
+            id: uuidv4(),
+            active: false
+        })
+    )
+  }
 
 const saveState = (s, quiet) => {
     let key = getVideoId()

@@ -70,6 +70,15 @@
     "load":{
         "message": "LOAD"
     },
+    "import":{
+        "message": "IMPORT CSV"
+    },
+    "export":{
+        "message": "EXPORT CSV"
+    },
+    "importSuccess": {
+        "message": "FairyNote: CSV data imported, but not saved yet, you can undo this buy FILE > LOAD right now before next autosave."
+    },
     "reset":{
         "message": "RESET"
     },

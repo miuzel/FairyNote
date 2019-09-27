@@ -2,7 +2,7 @@ import React from 'react'
 import { i18nMsg } from '../constants'
 import { Drawer, Menu,Icon, Button } from 'antd'
 import { connect } from 'react-redux'
-import {toggleMenu,timelineLoadAsync,timelineSave,timelineReset,toggleText,toggleHelp,toggleSettings} from '../redux/actions'
+import {toggleMenu,timelineLoadAsync,timelineSave,timelineReset,toggleText,toggleHelp,toggleSettings,timelineExport, timelineImportAsync} from '../redux/actions'
 import Mode from './settings/Mode';
 import AutoNavigate from './settings/AutoNavigate'
 import FairyNoteSyncTimer from './FairyNoteSyncTimer';
@@ -18,7 +18,7 @@ const getKey = () => {
     return key 
 };
 
-const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsync, timelineSave, timelineReset, toggleText, toggleHelp, toggleSettings, container }) => {
+const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsync, timelineSave,timelineExport ,timelineImportAsync,timelineReset, toggleText, toggleHelp, toggleSettings, container }) => {
     const menus = [
         {
             name: (<span><Icon type="file" /> {i18nMsg("file")}</span>),
@@ -32,6 +32,16 @@ const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsy
                     name: "load",
                     icon: "cloud-download",
                     onClick: () => timelineLoadAsync({ key: getKey() ,defaultMode})
+                },
+                {
+                    name: "export",
+                    icon: "export",
+                    onClick: () => timelineExport({ key: getKey() })
+                },
+                {
+                    name: "import",
+                    icon: "import",
+                    onClick: () => timelineImportAsync({ key: getKey() })
                 },
                 {
                     name: "reset",
@@ -124,7 +134,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    toggleMenu,timelineLoadAsync,timelineSave,timelineReset,toggleText,toggleHelp,toggleSettings
+    toggleMenu,timelineLoadAsync,timelineSave,timelineReset,toggleText,toggleHelp,toggleSettings,timelineImportAsync,timelineExport
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FairyNoteHeader)
