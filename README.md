@@ -12,6 +12,21 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2.
 
+### Change 2.3.0
+
+- Port to firefox.
+
+The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://addons.mozilla.org/en-US/firefox/addon/shortkeys/ and import the following configuration to disable these built-in shortcuts on youtube.com
+
+```json
+[
+    {"key":"ctrl+shift+a","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"exported":true,"sitesArray":["*youtube.com*"],"activeInInputs":true},
+    {"key":"ctrl+shift+x","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"exported":true,"sitesArray":["*youtube.com*"],"activeInInputs":true},
+    {"key":"ctrl+shift+h","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"activeInInputs":true,"exported":true,"sitesArray":["*youtube.com*"]},
+    {"key":"ctrl+shift+k","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"activeInInputs":true,"exported":true,"sitesArray":["*youtube.com*"]}
+]
+```
+
 ### Change 2.2.0
 
 - New menu items FILE > EXPORT/IMPORT. This will be useful if you are coping data among videos or you want to edit the data in VSCode, Excel, Numbers or whatever editor you like.
