@@ -39,11 +39,14 @@ const actionCreatorCreatorWithData = actionType => payload => (dispatch,getState
 export const settingsLoadAsync = (payload) => dispatch => {
   const key = "FairyNote#Settings"
   chrome.storage.sync.get([key], function (result) {
-    let savedState = result[key];
+    let savedState
+    if (result) {
+      savedState = result[key];
+    }
     if (!savedState) {
       savedState = defaultSettings
     }
-    if (!payload.quiet){
+    if (!payload.quiet) {
       message.success(i18nMsg("loadSuccess"));
     }
     dispatch(loadSettings(savedState))
@@ -51,18 +54,21 @@ export const settingsLoadAsync = (payload) => dispatch => {
 }
 
 
-export const timelineLoadAsync = (payload) => (dispatch,getState) => {
+export const timelineLoadAsync = (payload) => (dispatch, getState) => {
   let key = getVideoId()
   chrome.storage.sync.get([key], function (result) {
-    let savedState = result[key];
+    let savedState
+    if (result) {
+      savedState = result[key];
+    }
     if (!savedState) {
       const state = getState()
       savedState = {
-          mode: state.settings.defaultMode,
-          items: []
+        mode: state.settings.defaultMode,
+        items: []
       };
     }
-    if (!payload.quiet){
+    if (!payload.quiet) {
       message.success(i18nMsg("loadSuccess"));
     }
     dispatch(timelineLoaded(savedState))

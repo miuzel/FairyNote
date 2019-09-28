@@ -56,7 +56,7 @@ export class FairyNoteSyncTimer extends Component {
                     disabled={isSyncStarted}
                     value={isSyncStarted ? "" : this.state.magicword}
                     onChange={this.handleTextChange.bind(this)}
-                    addonAfter={<Icon type="play-square" disable={isSyncStarted}
+                    addonAfter={<Icon type="play-square" disable={isSyncStarted.toString()}
                         onClick={isSyncStarted ? () => { } : this.syncVideo} />} defaultValue="mysite" />
                         </div>
             </div>

@@ -195,7 +195,6 @@ module.exports = {
     optimization: {
         minimizer: [new UglifyJsPlugin({
             minify: (file, sourceMap) => {
-                console.log(file)
                 // https://github.com/mishoo/UglifyJS2#minify-options
                 const uglifyJsOptions = {
                     output: {

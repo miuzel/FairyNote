@@ -67,7 +67,11 @@ function init() {
     loading.id = "my-extension-loading";
     loading.classList.add("show");
     app.appendChild(loading);
-    const appFrame = document.createElement('div');
+    var appFrame = document.querySelector("#my-extension-frame")
+    if( appFrame ){
+      appFrame.remove()
+    }
+    appFrame = document.createElement('div');
     appFrame.id = "my-extension-frame";
     app.appendChild(appFrame);
     ReactDOM.render((

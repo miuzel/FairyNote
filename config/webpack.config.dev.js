@@ -41,7 +41,7 @@ module.exports = {
     devtool: shouldUseSourceMap ? 'source-map' : false,
     entry: {
         content: [require.resolve('./polyfills'), paths.appContentJs],
-        //test: [require.resolve('./polyfills'), paths.appTestJs]
+        test: [require.resolve('./polyfills'), paths.appTestJs]
     },
     output: {
         // The build folder.
