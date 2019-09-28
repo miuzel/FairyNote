@@ -32,11 +32,14 @@ export class FairyNoteTimelineItem extends Component {
   }
   componentDidMount(){
     if (this.textArea ){
-      this.scroll()
+      
       if(this.selectTimeout){
         clearTimeout(this.selectTimeout);
       }
-      this.selectTimeout = setTimeout(() => this.textArea.current.textArea.current.textAreaRef.select(),0)
+      this.selectTimeout = setTimeout(() => {
+        this.scroll()
+        this.textArea.current.textArea.current.textAreaRef.select()
+      },0)
       // forwarded to the real textArea
     }
   }

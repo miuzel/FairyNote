@@ -33,5 +33,11 @@
   "web_accessible_resources":[
     "/static/css/content.css"
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@FairyNote2",
+      "strict_min_version": "53.0"
+    }
+  },
   "content_security_policy": "script-src 'self' 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; object-src 'self'"
 }

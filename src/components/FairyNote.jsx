@@ -21,6 +21,7 @@ const { Header, Footer, Content } = Layout
 
 export class FairyNote extends Component {
     componentDidMount() {
+        store.dispatch(settingsLoadAsync({ quiet: true }))
         setTimeout(() => {
             this.props.onLoad()
         }, 600)
@@ -45,9 +46,6 @@ export class FairyNote extends Component {
         } else {
             message.warn(i18nMsg("cannotFindVideoID"))
         }
-    }
-    componentWillMount() {
-        store.dispatch(settingsLoadAsync({ quiet: true }))
     }
     
     render() {

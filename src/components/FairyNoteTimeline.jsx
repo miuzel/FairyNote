@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 import { Button,  Timeline } from 'antd'
 import { itemAdd, videoGotoEnd } from '../redux/actions';
 import FairyNoteTimelineItem from './FairyNoteTimelineItem';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 import { i18nMsg } from '../constants'
 
 const FairyNoteTimeline = ({timeline,itemAdd,videoGotoEnd,container}) => {
@@ -34,22 +37,24 @@ const FairyNoteTimeline = ({timeline,itemAdd,videoGotoEnd,container}) => {
     }
     return (
       <Timeline pending={addpanel}>
-        <ReactCSSTransitionGroup
-          transitionName="content-card"
-          transitionEnterTimeout={550}
-          transitionLeaveTimeout={450}>
+        <TransitionGroup>
           {
             timeline.items.map(
               (t, i) => (
+            <CSSTransition
+              key={t.id}
+              timeout={{ enter: 500, exit: 450 }}
+              classNames="content-card"
+            >
                <FairyNoteTimelineItem
-                key={t.id}
                 index={i}
                 container={container}
                 {...t}/>
+            </CSSTransition>
               )
             )
           }
-        </ReactCSSTransitionGroup>
+          </TransitionGroup>
       </Timeline>
     )
 }
