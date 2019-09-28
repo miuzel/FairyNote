@@ -62,3 +62,13 @@ The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://add
 - You can change the locale of the extension in settings now. The locale no longer follows your browser.
 
 p.s. Please read the help page and remember those keyboard shortcuts which can boost your recording speed significantly
+
+
+### How to build
+
+On Linux / node v10.16.0 / yarn v1.17.3
+
+```bash
+yarn install
+yarn build
+```
