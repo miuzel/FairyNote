@@ -20,16 +20,17 @@ const { Header, Footer, Content } = Layout
 // const parentDoc = document
 
 export class FairyNote extends Component {
-    componentDidMount() {
+    componentWillMount(){
         store.dispatch(settingsLoadAsync({ quiet: true }))
-        setTimeout(() => {
-            this.props.onLoad()
-        }, 600)
         setTimeout(() => {
             store.dispatch(timelineLoadAsync({ quiet: false }))
         }, 0)
+    }
+    componentDidMount() {
+        setTimeout(() => {
+            this.props.onLoad()
+        }, 600)
         this.bindOnload()
-        
     }
     bindOnload = () => {
         let videoPlayer = document.querySelector('#primary #player video.video-stream')

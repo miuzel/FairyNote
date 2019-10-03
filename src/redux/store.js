@@ -13,7 +13,7 @@ let initialState = {
         isSyncStarted: false
     },
     data: {
-        actors: [i18nMsg("host")],
+        actors: [],
     },
     timeline: {
         mode: defaultSettings.defaultMode,

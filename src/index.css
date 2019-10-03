@@ -54,8 +54,11 @@ body {
   transition: all 0.3s ease-in;
 }
 #my-extension-loading-spin{
+  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content;    /* Firefox/Gecko */
+  width: -webkit-max-content; /* Chrome */
   width: fit-content;
-  height: fit-content;
+  height: 300px;
   margin: auto;
   top: 0;
   bottom: 0;

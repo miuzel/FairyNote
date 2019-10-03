@@ -36,7 +36,7 @@ export class FairyNoteSyncTimer extends Component {
             toggleSyncTimer
         } = this.props
 
-        console.log(this.props)
+        //console.log(this.props)
         return (
             <div style={{ ...style }}>
                 {i18nMsg("synctimer")}

@@ -1,8 +1,7 @@
 import * as types from '../actions/types'
-import { i18nMsg } from '../../constants'
 
 const initialState = {
-    actors: [i18nMsg("host")],
+    actors: [],
 }
 
 export default (state = initialState, { type, payload }) => {
