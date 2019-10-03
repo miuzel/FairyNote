@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2.
 
+### Change 2.3.1
+
+- Fix firefox timepicker issue and some minor styling issues. The new time picker respond to keyboard Up/Down or Shift+Up/Shift+Down to adjust the time.
+
 ### Change 2.3.0
 
 - Port to firefox.
