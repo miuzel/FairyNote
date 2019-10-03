@@ -1,48 +1,39 @@
 import React, { Component } from 'react'
-import { TimePicker, Button } from 'antd'
+import { InputNumber } from 'antd';
 import { i18nMsg } from '../../constants'
 import moment from 'moment'
 
 export default class MyTimePicker extends Component {
     // Just show the latest item.
-    state = {
-      open: false
-    }
-    hendleOpenChange = (status) => this.setState({open:status})
-    handleClose = () => {
-      this.setState({ open: false })
-      this.props.onBlur()
-    }
     handleTimeChange(ts){
       if(ts){
-        this.props.onChange((ts - moment.utc(0) )/1000)
+        this.props.onChange(ts)
       } else {
         this.props.onChange(0)
       }
     }
     render() {
-        return (
-            <TimePicker style={{ width: this.props.width, marginRight: "10px" }}
-                open={this.state.open}
-                value={typeof(this.props.value) === 'number' ? moment.utc(0).seconds(this.props.value) : null}
-                size="small"
-                placeholder={i18nMsg("pickTime")}
-                allowClear={false}
-                onChange={this.handleTimeChange.bind(this)}
-                onOpenChange={this.hendleOpenChange}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                addon={
-                    () => (
-                        <Button
-                            ize="small"
-                            type="primary"
-                            onClick={this.handleClose}
-                        >{i18nMsg("OK")}</Button>
-                    )
+        let inputNumber = (
+            <InputNumber 
+              style={{ width: this.props.width, marginRight: "10px" }}
+              size="small"
+              placeholder={i18nMsg("pickTime")}
+              value={this.props.value}
+              formatter={ value => `${moment.utc(0).seconds(value).format("HH:mm:ss")}`}
+              parser={ value => {
+                  let t = value.replace(/[^\d:]/g, '')
+                  if (t.match(/^\d{2}:\d{2}:\d{2}$/)){
+                    let s = t.split(":")
+                    return s[0].substr(0,2)*3600+s[1].substr(0,2)*60+s[2].substr(0,2)*1
+                  } else {
+                    return this.props.value
+                  }
                 }
-                getPopupContainer={() => this.props.container}
+              }
+              onFocus={this.props.onFocus}
+              onChange={this.handleTimeChange.bind(this)}
             />
         )
+        return inputNumber
     }
 }

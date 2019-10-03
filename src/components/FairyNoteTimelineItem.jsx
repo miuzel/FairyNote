@@ -95,7 +95,6 @@ export class FairyNoteTimelineItem extends Component {
           itemUpdate({ index: index, item: { timestamp: value } })
         }}
         onFocus={() => itemFocus({ index: index })}
-        onBlur={() => { }}
         container={container}
       ></MyTimePicker>
     )
@@ -156,7 +155,7 @@ export class FairyNoteTimelineItem extends Component {
       }} >
         <div ref={this.cardRef} style={{top:"-8px",paddingBottom:"10px"}}>
         <Card 
-          onClick={()=> itemFocus({ index: index })}
+          // onClick={()=> itemFocus({ index: index })}
           style={item.active ? { top:"4px", background: "#f0f0f0" } : {top:"4px"}}
           hoverable={true}
           title={
