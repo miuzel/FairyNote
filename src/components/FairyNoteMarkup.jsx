@@ -174,10 +174,13 @@ const FairyNoteMarkup = props => {
         videoGoto({goto: newtime })
         itemAdd()
     }
+    let handleDrop = e => {
+        e.preventDefault()
+    }
     let markup = (item, index) => (
         <div className="markup" key={index} draggable={true} 
         onDragStart={handleDragStart(index)} onDragEnd={handleDragEnd(index)}
-        style={{transform: "translateX(-0.5em)", left: item.timestamp*100/totalTime + "%" ,bottom: "-3px",position:"absolute"}}>
+        style={{transform: "translateX(-0.5em)", left: item.timestamp*100/totalTime + "%" ,bottom: "-2px",position:"absolute"}}>
             <Popover content={content(item, index)} size="small" title="FairyNote2" placement="topRight" overlayStyle={{zIndex: 6000}}>
                 <div size="small" type="link" onClick={() => {
                     itemFocus({index: index})
@@ -195,7 +198,7 @@ const FairyNoteMarkup = props => {
     }
     return (
         <Tooltip placement="topRight" title={i18nMsg("progresshint")}  overlayStyle={{whiteSpace: "pre-wrap", textAlign:"right"}}>
-            <div className="extension-bar-markup" onDragOver={allowDrop} onDoubleClick={handleDoubleClick}> 
+            <div className="extension-bar-markup" onDragOver={allowDrop} onDoubleClick={handleDoubleClick} onDrop={handleDrop}> 
             {timeline.items.map(markup)}
             </div>
         </Tooltip>
