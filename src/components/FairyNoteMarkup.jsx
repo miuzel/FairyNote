@@ -5,7 +5,7 @@ import { Button, Icon, Card, Popover, Tooltip } from 'antd';
 import { i18nMsg } from '../constants'
 import { itemFocus, itemDel, videoGoto, itemUpdate, itemAdd } from '../redux/actions'
 import moment from 'moment'
-
+var dragX = 0
 const FairyNoteMarkup = props => {
     const {
         timeline,
@@ -19,11 +19,16 @@ const FairyNoteMarkup = props => {
     const [progressBar, setProgressBar] = useState(
         document.querySelector('.ytp-progress-bar')
     );
+
     const [totalTime, setTotalTime] = useState(
-        document.querySelector('.ytp-progress-bar')
+        progressBar ? progressBar.attributes.getNamedItem('aria-valuemax').value : 0
     );
-    
     useEffect(() => {
+        /* events fired on the drop targets */
+        document.addEventListener("dragover", ( event ) => {
+            // prevent default to allow drop
+            dragX = event.pageX
+        }, false);
         // Select the node that will be observed for mutations
         const targetNode = document.querySelector('.ytp-progress-bar')
         if (targetNode) {
@@ -72,13 +77,21 @@ const FairyNoteMarkup = props => {
     }
     let handleDragStart = index => e => {
         itemFocus({index: index})
+        // you must set some data in firefox to make things draggable... m0m
+        e.dataTransfer.setData('Text', `${index}`);
     }
     let handleDragEnd = index => e => {
+        console.log(dragX)
         let pRect = progressBar.getBoundingClientRect()
-        let offset = e.clientX - pRect.x
+        let offset = dragX - pRect.x //firefox cannot get e.clientX 
         offset = Math.max(0,offset)
         offset = Math.min(pRect.width,offset)
+        // for( var x in e){
+        //     console.log(x+":"+e[x])
+        // }
+        console.log(totalTime)
         let newtime = Math.floor(totalTime * offset / pRect.width)
+        console.log(newtime)
         itemUpdate({
             index: index,
             item: {
@@ -100,16 +113,16 @@ const FairyNoteMarkup = props => {
     let markup = (item, index) => (
         <div className="markup" key={index} draggable={true} 
         onDragStart={handleDragStart(index)} onDragEnd={handleDragEnd(index)} 
-        style={{transform: "translateX(-15px)", left: item.timestamp*100/totalTime + "%" ,bottom: "-7px",position:"absolute"}}>
+        style={{transform: "translateX(-15px)", left: item.timestamp*100/totalTime + "%" ,bottom: "-3px",position:"absolute"}}>
             <Popover content={content(item, index)} size="small" title="FairyNote2" placement="topRight" overlayStyle={{zIndex: 6000}}>
-                <Button size="small" type="link" onClick={() => {
+                <div size="small" type="link" onClick={() => {
                     itemFocus({index: index})
                     videoGoto({goto: item.timestamp })
                     }} tabIndex="-1">
                     {
                         item.active ? (<Icon type="down-square" theme="filled" style={{color:"rgba(255, 255, 0, 0.8)"}} />) : (<Icon type="caret-down" style={{color:"rgba(48, 200, 255, 0.8)"}}/>)
                     }
-                </Button>
+                </div>
             </Popover>
         </div>
     )
