@@ -3,7 +3,7 @@ import * as types from '../actions/types'
 import { message } from 'antd';
 import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
-import { getFullText, copyTextToClipboard, readTextFromClipboard, getVideoId } from '../../utils'
+import { getFullText, copyTextToClipboard, getVideoId } from '../../utils'
 import { i18nMsg } from '../../constants'
 import csvstringify from 'csv-stringify'
 import csvparse from 'csv-parse/lib/sync'
@@ -223,10 +223,6 @@ export default (state = initialState, { type, payload }) => {
             nextState.items = csv2items(payload.csvdata)
             return nextState
 
-        case types.TIMELINE_IMPORT_CLIPBOARD:
-            const text = readTextFromClipboard();
-            console.log(text)
-            return nextState
         default:
             return state
     }
