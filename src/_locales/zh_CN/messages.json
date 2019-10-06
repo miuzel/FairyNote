@@ -258,5 +258,8 @@
     },
     "magicword": {
         "message": "直播同步咒语"
+    },
+    "progresshint": {
+        "message": "点击选中或者拖动内容块\n双击进度条添加新的块"
     }
 }

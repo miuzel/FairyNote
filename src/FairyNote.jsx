@@ -1,26 +1,25 @@
 /* global document */
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
 import { Provider } from 'react-redux'
-// import Frame, { FrameContextConsumer } from 'react-frame-component';
 import "./fairynote.css";
-import FairyNoteHeader from './FairyNoteHeader';
-import FairyNoteTimeline from './FairyNoteTimeline';
-import FairyNoteFooter from './FairyNoteFooter';
-import FairyNoteSettings from './FairyNoteSettings';
-import FairyNoteText from './FairyNoteText';
-import FairyNoteHelp from './FairyNoteHelp';
-import FairyNoteShortcuts from './FairyNoteShortcuts';
-import store from '../redux/store'
-import { i18nMsg } from '../constants'
+import FairyNoteHeader from './components/FairyNoteHeader';
+import FairyNoteTimeline from './components/FairyNoteTimeline';
+import FairyNoteFooter from './components/FairyNoteFooter';
+import FairyNoteSettings from './components/FairyNoteSettings';
+import FairyNoteText from './components/FairyNoteText';
+import FairyNoteHelp from './components/FairyNoteHelp';
+import FairyNoteShortcuts from './components/FairyNoteShortcuts';
+import store from './redux/store'
+import { i18nMsg } from './constants'
 import { Layout , message} from 'antd';
-import { timelineLoadAsync, settingsLoadAsync } from '../redux/actions'
+import { timelineLoadAsync, settingsLoadAsync } from './redux/actions'
 
 const { Header, Footer, Content } = Layout
 // const parentDoc = document
 
 export class FairyNote extends Component {
-    componentWillMount(){
+    constructor(props){
+        super(props)
         store.dispatch(settingsLoadAsync({ quiet: true }))
         setTimeout(() => {
             store.dispatch(timelineLoadAsync({ quiet: false }))
@@ -52,13 +51,6 @@ export class FairyNote extends Component {
     render() {
         const { toggle ,app} = this.props
         return (
-            // <Frame head={[<link type="text/css" rel="stylesheet" key='0'
-            //     href={chrome.runtime.getURL("/static/css/content.css")}></link>]}>
-            //     <FrameContextConsumer key='1'>
-            //         {
-            //             // Callback is invoked with iframe's window and document instances
-            //             ({ document, window }) => {
-            //                 return (
             <Provider store={store}>
                 <Layout id="extensionlayout">
                     <Header id="extensionheader">
@@ -79,19 +71,9 @@ export class FairyNote extends Component {
                     </div>
                 </Layout>
             </Provider>
-            //                 )
-            //             }
-            //         }
-            //     </FrameContextConsumer>
-            // </Frame>
-
         )
     }
 }
-
-FairyNote.propTypes = {
-}
-
 
 export default FairyNote
 

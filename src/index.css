@@ -1,87 +1,115 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }
 
-#my-extension-root{
-  visibility: visible;
-  width: 550px;
-  height: 100%;
-  position: fixed;
-  top: 0px;
-  right: -20px;
-  z-index: 3999;
-  background: #eee;
-  box-shadow: none;
-  overflow: hidden;
-  opacity: 0;
-  transition: all 0.25s ease-in;
+#my-extension-root {
+    visibility: visible;
+    width: 550px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: -20px;
+    z-index: 3999;
+    background: #eee;
+    box-shadow: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in;
 }
-#my-extension-root.hide{
-  visibility: hidden;
+
+#my-extension-root.hide {
+    visibility: hidden;
 }
-#my-extension-root.show{
-  right: 0px;
-  display:block;
-  opacity: 1;
-  box-shadow: 0px 0px 8px 1px #0000009e;
-  transition: all 0.25s ease-out;
+
+#my-extension-root.show {
+    right: 0px;
+    display: block;
+    opacity: 1;
+    box-shadow: 0px 0px 8px 1px #0000009e;
+    transition: all 0.25s ease-out;
 }
+
 #my-extension-root iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 #my-extension-frame {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 #my-extension-loading.show {
-  opacity: 1;
-  transition: all 0.3s ease-in;
+    opacity: 1;
+    transition: all 0.3s ease-in;
 }
-#my-extension-loading{
-  width: 100%;
-  height: 100%;
-  z-index: 4200;
-  position: absolute;
-  background: #eee;
-  box-shadow: none;
-  opacity:0;
-  transition: all 0.3s ease-in;
-}
-#my-extension-loading-spin{
-  width: intrinsic;           /* Safari/WebKit uses a non-standard name */
-  width: -moz-max-content;    /* Firefox/Gecko */
-  width: -webkit-max-content; /* Chrome */
-  width: fit-content;
-  height: 300px;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-} 
 
+#my-extension-loading {
+    width: 100%;
+    height: 100%;
+    z-index: 4200;
+    position: absolute;
+    background: #eee;
+    box-shadow: none;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
+
+#my-extension-loading-spin {
+    width: intrinsic;
+    /* Safari/WebKit uses a non-standard name */
+    width: -moz-max-content;
+    /* Firefox/Gecko */
+    width: -webkit-max-content;
+    /* Chrome */
+    width: fit-content;
+    height: 300px;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
 
 .ant-modal-mask {
-  z-index: 4900 !important;
+    z-index: 4900 !important;
 }
-.ant-modal-wrap  {
-  z-index: 5000 !important;
+
+.ant-modal-wrap {
+    z-index: 5000 !important;
 }
+
 .ant-message {
-  z-index: 5500 !important;
+    z-index: 5500 !important;
 }
 
 .ant-select-dropdown {
-  z-index: 5510 !important;
+    z-index: 5510 !important;
 }
 
 .ant-timeline-item-head {
-  border-radius: 0.5em;
+    border-radius: 0.5em;
+}
+
+.extension-bar-markup {
+    height: 1em;
+    top: -25px;
+    width: 100%;
+    position: absolute;
+    color: #efefef;
+    background: rgba(0,0,0,0.5);
+    z-index: 5000;
+}
+
+.extension-bar-markup .markup:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.extension-bar-markup:hover {
+    cursor: pointer;
 }

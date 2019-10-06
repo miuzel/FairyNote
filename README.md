@@ -10,7 +10,11 @@ This is a chrome extension for those need to do manually indexing and adding out
 
 The repo is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-## FairyNote 2.
+## FairyNote 2
+
+### Change 2.4.0
+
+- Add progress bar tool. Now you can view and manage the text blocks on the youtube progress bar.
 
 ### Change 2.3.1
 

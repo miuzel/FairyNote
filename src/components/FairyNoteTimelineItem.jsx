@@ -153,36 +153,37 @@ export class FairyNoteTimelineItem extends Component {
         padding: "0 0 0px 0",
         width: "100%"
       }} >
-        <div ref={this.cardRef} style={{top:"-8px",paddingBottom:"10px"}}>
-        <Card 
-          // onClick={()=> itemFocus({ index: index })}
-          style={item.active ? { top:"4px", background: "#f0f0f0" } : {top:"4px"}}
-          hoverable={true}
-          title={
-            <div>
-              {timepicker}
-              {actor}
-              {comment}
-            </div>
-          }
-          size="small">
-          {text}
-        </Card><span id="cardcontrol" style={{position:"fixed",top:5,right: 0,margin: "0 10px"}}
+          <div ref={this.cardRef} style={{ top: "-8px", paddingBottom: "10px" }}>
+            <Card
+              // onClick={()=> itemFocus({ index: index })}
+              style={item.active ? { top: "4px", background: "#f0f0f0" } : { top: "4px" }}
+              hoverable={true}
+              title={
+                <div>
+                  {timepicker}
+                  {actor}
+                  {comment}
+                </div>
+              }
+              size="small">
+              {text}
+            </Card>
+            <span id="cardcontrol" style={{ position: "fixed", top: 5, right: 0, margin: "0 10px" }}
               width="auto">
-                <Tooltip placement="topRight" title={i18nMsg("jump")}
-                  getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => videoGoto({ goto: item.timestamp })} tabIndex="-1"><Icon type="play-square"  /></Button>
-                </Tooltip>
-                <Tooltip placement="topRight" title={i18nMsg("copy")}
-                  getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => itemCopy({ index: index, item: item })} tabIndex="-1"><Icon type="copy"  /></Button>
-                </Tooltip>
-                <Tooltip placement="topRight" title={i18nMsg("delete")}
-                  getPopupContainer={() => container} >
-                  <Button size="small" type="link" onClick={() => itemDel({ index: index })} tabIndex="-1"><Icon type="close-circle"  /></Button>
-                </Tooltip>
-              </span>
-        </div>
+              <Tooltip placement="topRight" title={i18nMsg("jump")}
+                getPopupContainer={() => container} >
+                <Button size="small" type="link" onClick={() => videoGoto({ goto: item.timestamp })} tabIndex="-1"><Icon type="play-square" /></Button>
+              </Tooltip>
+              <Tooltip placement="topRight" title={i18nMsg("copy")}
+                getPopupContainer={() => container} >
+                <Button size="small" type="link" onClick={() => itemCopy({ index: index, item: item })} tabIndex="-1"><Icon type="copy" /></Button>
+              </Tooltip>
+              <Tooltip placement="topRight" title={i18nMsg("delete")}
+                getPopupContainer={() => container} >
+                <Button size="small" type="link" onClick={() => itemDel({ index: index })} tabIndex="-1"><Icon type="close-circle" /></Button>
+              </Tooltip>
+            </span>
+          </div>
       </Timeline.Item></div>
     )
   }

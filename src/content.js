@@ -2,7 +2,8 @@
 /* src/content.js */
 import ReactDOM from 'react-dom'
 import React from 'react'
-import FairyNote from './components/FairyNote'
+import FairyNote from './FairyNote'
+import FairyNoteMarkups from './FairyNoteMarkups'
 import Mousetrap from 'mousetrap'
 import 'mousetrap-global-bind'
 import { i18nMsg } from './constants'
@@ -82,6 +83,15 @@ function init() {
     document.body.appendChild(app);
     ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}
       onLoad={() => hideandDelete(loading, 300)} />, appFrame);
+    var markups = document.querySelector("#my-extension-markups")
+    if( markups ){
+      markups.remove()
+    }
+    markups = document.createElement('div');
+    markups.id = "my-extension-markups";
+    const markupContainer = document.querySelector(".ytp-chrome-bottom")
+    markupContainer.appendChild(markups);
+    ReactDOM.render(<FairyNoteMarkups />, markups);
     initialized = true
     console.log("initialized")
   }

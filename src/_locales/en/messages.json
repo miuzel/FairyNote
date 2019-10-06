@@ -258,5 +258,8 @@
     },
     "magicword": {
         "message": "LIVE Sync magic word"
+    },
+    "progresshint": {
+        "message": "Click to Focus.\nGrab to move block.\nDouble click to add new block."
     }
 }
