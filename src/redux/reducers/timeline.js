@@ -185,7 +185,7 @@ export default (state = initialState, { type, payload }) => {
             }
             nextState.items[updateIndex] = newItem
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
-            if(payload.autoSave) {
+            if(payload.autoSave && !payload.ignoreAutoSave) {
                 saveState(nextState,true)
             }
             return nextState
