@@ -27,7 +27,15 @@ const FairyNoteMarkup = props => {
         /* events fired on the drop targets */
         document.addEventListener("dragover", ( event ) => {
             // prevent default to allow drop
-            dragX = event.pageX
+            if (dragX !== event.pageX){
+                dragX = event.pageX
+                let pRect = progressBar.getBoundingClientRect()
+                let offset = dragX - pRect.x //firefox cannot get e.clientX 
+                offset = Math.max(0,offset)
+                offset = Math.min(pRect.width,offset)
+                let newtime = Math.floor(totalTime * offset / pRect.width)
+                videoGoto({goto: newtime})
+            }
         }, false);
         // Select the node that will be observed for mutations
         const targetNode = document.querySelector('.ytp-progress-bar')
@@ -50,7 +58,7 @@ const FairyNoteMarkup = props => {
             // Start observing the target node for configured mutations
             observer.observe(targetNode, config);
         }
-    }, [])
+    })
 
     let content = (item, index) => {
         return (
@@ -81,17 +89,11 @@ const FairyNoteMarkup = props => {
         e.dataTransfer.setData('Text', `${index}`);
     }
     let handleDragEnd = index => e => {
-        console.log(dragX)
         let pRect = progressBar.getBoundingClientRect()
         let offset = dragX - pRect.x //firefox cannot get e.clientX 
         offset = Math.max(0,offset)
         offset = Math.min(pRect.width,offset)
-        // for( var x in e){
-        //     console.log(x+":"+e[x])
-        // }
-        console.log(totalTime)
         let newtime = Math.floor(totalTime * offset / pRect.width)
-        console.log(newtime)
         itemUpdate({
             index: index,
             item: {
@@ -112,8 +114,8 @@ const FairyNoteMarkup = props => {
     }
     let markup = (item, index) => (
         <div className="markup" key={index} draggable={true} 
-        onDragStart={handleDragStart(index)} onDragEnd={handleDragEnd(index)} 
-        style={{transform: "translateX(-15px)", left: item.timestamp*100/totalTime + "%" ,bottom: "-3px",position:"absolute"}}>
+        onDragStart={handleDragStart(index)} onDragEnd={handleDragEnd(index)}
+        style={{transform: "translateX(-0.5em)", left: item.timestamp*100/totalTime + "%" ,bottom: "-3px",position:"absolute"}}>
             <Popover content={content(item, index)} size="small" title="FairyNote2" placement="topRight" overlayStyle={{zIndex: 6000}}>
                 <div size="small" type="link" onClick={() => {
                     itemFocus({index: index})

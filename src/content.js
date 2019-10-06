@@ -8,6 +8,7 @@ import Mousetrap from 'mousetrap'
 import 'mousetrap-global-bind'
 import { i18nMsg } from './constants'
 import { Spin ,message} from 'antd'
+import i18n from './_locales/i18n'
 import './index.css'
 
 let initialized = false;
@@ -20,8 +21,9 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     console.log(`Received msg ${request.message}`)
     if (request.message === "clicked_page_action") {
-      init();
-      toggle(app)
+      init(()=>{
+        toggle(app)
+      });
     }
   }
 );
@@ -49,9 +51,9 @@ function hideandDelete(element, timeout) {
   setTimeout(() => element.remove(), timeout)
 }
 
-function init() {
+function init(onfinish) {
   if (!initialized) {
-    let videoPlayer = document.querySelector('#primary #player video.video-stream')
+    let videoPlayer = document.querySelector('video')
     if(!videoPlayer || 
       ! (
          document.URL.match(/youtube\.com\/watch\?v=.+/) ||
@@ -59,7 +61,7 @@ function init() {
         )
       ){
       message.warn(i18nMsg("cannotFindVideoID"))
-    return
+      return
     }
     console.log("initializing")
     Mousetrap.unbind('ctrl+shift+f')
@@ -68,42 +70,62 @@ function init() {
     loading.id = "my-extension-loading";
     loading.classList.add("show");
     app.appendChild(loading);
+    ReactDOM.render((
+      <div id="my-extension-loading-spin">
+        <Spin size="large" tip="LOADING...">
+        </Spin>
+      </div>
+    ), loading);
     var appFrame = document.querySelector("#my-extension-frame")
     if( appFrame ){
       appFrame.remove()
     }
-    appFrame = document.createElement('div');
-    appFrame.id = "my-extension-frame";
-    app.appendChild(appFrame);
-    ReactDOM.render((
-      <div id="my-extension-loading-spin">
-        <Spin size="large" tip={i18nMsg("loading")}>
-        </Spin></div>
-    ), loading);
-    document.body.appendChild(app);
-    ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}
-      onLoad={() => hideandDelete(loading, 300)} />, appFrame);
     var markups = document.querySelector("#my-extension-markups")
     if( markups ){
       markups.remove()
     }
+    appFrame = document.createElement('div');
+    appFrame.id = "my-extension-frame";
+    const markupContainer = document.querySelector(".ytp-chrome-bottom")
     markups = document.createElement('div');
     markups.id = "my-extension-markups";
-    const markupContainer = document.querySelector(".ytp-chrome-bottom")
-    markupContainer.appendChild(markups);
-    ReactDOM.render(<FairyNoteMarkups />, markups);
-    initialized = true
-    console.log("initialized")
+    app.appendChild(appFrame);
+    document.body.appendChild(app);
+
+    const key = "FairyNote#Settings"
+    chrome.storage.sync.get([key], function (result) {
+      if (result) {
+        let savedState = result[key];
+        if(savedState){
+          i18n.changeLanguage(savedState.language)
+        }
+      }
+      ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}
+        onLoad={() => hideandDelete(loading, 300)} />, appFrame);
+      markupContainer.appendChild(markups);
+      ReactDOM.render(<FairyNoteMarkups />, markups);
+      initialized = true
+      console.log("initialized")
+      if(onfinish){
+        onfinish()
+      }
+    })
+  } else {
+    if(onfinish){
+      onfinish()
+    }
   }
 }
 
 Mousetrap.bindGlobal('ctrl+shift+f', function(e) {
-  init()
-  toggle(app)
+  init(()=>{
+    toggle(app)
+  })
 });
 Mousetrap.bindGlobal('command+shift+f', function(e) {
-  init()
-  toggle(app)
+  init(()=>{
+    toggle(app)
+  })
 });
 
 export { init };

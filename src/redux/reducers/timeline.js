@@ -3,14 +3,14 @@ import * as types from '../actions/types'
 import { message } from 'antd';
 import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
-import { getFullText, copyTextToClipboard, getVideoId } from '../../utils'
+import { getFullText, copyTextToClipboard, readTextFromClipboard, getVideoId } from '../../utils'
 import { i18nMsg } from '../../constants'
 import csvstringify from 'csv-stringify'
 import csvparse from 'csv-parse/lib/sync'
 import moment from 'moment'
 const initialState = []
 
-const getVideo = () => document.querySelector('#primary #player video.video-stream')
+const getVideo = () => document.querySelector('video')
 
 export default (state = initialState, { type, payload }) => {
     let nextState = { ...state }
@@ -220,10 +220,13 @@ export default (state = initialState, { type, payload }) => {
             return state
 
         case types.TIMELINE_IMPORT:
-            console.log(payload)
             nextState.items = csv2items(payload.csvdata)
             return nextState
-            
+
+        case types.TIMELINE_IMPORT_CLIPBOARD:
+            const text = readTextFromClipboard();
+            console.log(text)
+            return nextState
         default:
             return state
     }
