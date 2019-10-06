@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import rootReducer from './reducers'
-import { defaultSettings, i18nMsg } from '../constants'
+import { defaultSettings } from '../constants'
 
 let initialState = {
     settings: defaultSettings,

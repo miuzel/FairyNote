@@ -12,7 +12,7 @@ export class FairyNoteSyncTimer extends Component {
     }
 
     syncVideo = () => {
-        let video = document.querySelector('#primary #player video.video-stream')
+        let video = document.querySelector('video')
         if (video){
             video.currentTime = getVideoTimeFromMagicWord(this.state.magicword)
             video.play()

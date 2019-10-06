@@ -53,7 +53,7 @@ export const decodeWithDeclaration = (str) => {
 }
 
 export const genMagicWord = () => {
-    let video = document.querySelector('#primary #player video.video-stream')
+    let video = document.querySelector('video')
     if (video) {
         const anchor = 1591200000000
         let now = moment() - 0

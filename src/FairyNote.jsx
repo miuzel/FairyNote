@@ -19,11 +19,11 @@ const { Header, Footer, Content } = Layout
 
 export class FairyNote extends Component {
     constructor(props){
-        super(props)
         store.dispatch(settingsLoadAsync({ quiet: true }))
         setTimeout(() => {
             store.dispatch(timelineLoadAsync({ quiet: false }))
         }, 0)
+        super(props)
     }
     componentDidMount() {
         setTimeout(() => {
@@ -32,7 +32,7 @@ export class FairyNote extends Component {
         this.bindOnload()
     }
     bindOnload = () => {
-        let videoPlayer = document.querySelector('#primary #player video.video-stream')
+        let videoPlayer = document.querySelector('video')
         if(videoPlayer){
             videoPlayer.onloadeddata = () => {
                 if(document.URL.match(/youtube\.com\/watch\?v=.+/)||
