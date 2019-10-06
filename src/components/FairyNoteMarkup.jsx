@@ -1,10 +1,12 @@
 /* global document */
 import React,{useState , useEffect} from 'react'
 import { connect } from 'react-redux'
+import MyTimePicker from './inputs/MyTimePicker'
+import MyComplete from './inputs/MyComplete'
+import MyTextArea from './inputs/MyTextArea'
 import { Button, Icon, Card, Popover, Tooltip } from 'antd';
 import { i18nMsg } from '../constants'
-import { itemFocus, itemDel, videoGoto, itemUpdate, itemAdd } from '../redux/actions'
-import moment from 'moment'
+import { itemFocus, itemDel, videoGoto, itemUpdate, itemAdd,settingsUpdate } from '../redux/actions'
 var dragX = 0
 const FairyNoteMarkup = props => {
     const {
@@ -13,7 +15,11 @@ const FairyNoteMarkup = props => {
         videoGoto,
         itemDel,
         itemAdd,
-        itemUpdate
+        itemUpdate,
+        autoAddCandidate,
+        autoNavigating,
+        frequentlyUsedComments,
+        settingsUpdate,
     } = props
     
     const [progressBar, setProgressBar] = useState(
@@ -61,17 +67,70 @@ const FairyNoteMarkup = props => {
     })
 
     let content = (item, index) => {
+        let timepicker = (
+          <MyTimePicker
+            width="90px"
+            value={item.timestamp}
+            onChange={value => {
+              if (autoNavigating) { videoGoto({ goto: value }) }
+              itemUpdate({ index: index, item: { timestamp: value } })
+            }}
+            onFocus={() => itemFocus({ index: index })}
+          ></MyTimePicker>
+        )
+        let actor = (
+            <MyComplete
+            width="126px"
+            prefix="user"
+            placeholder={i18nMsg("guest")}
+            value={item.actor}
+            onChange={value => itemUpdate({ index: index, item: { actor: value } })}
+            onFocus={() => itemFocus({ index: index })}
+            dataSource={[]}
+            ></MyComplete>
+        )
+        let comment = (
+            <MyComplete
+            width="160px"
+            prefix="user"
+            placeholder={i18nMsg("comment")}
+            value={item.comment}
+            onChange={value => {
+                itemUpdate({ index: index, item: { comment: value } })
+            }}
+            onBlur={() => {
+                if(autoAddCandidate){
+                settingsUpdate({
+                    frequentlyUsedComments: frequentlyUsedComments
+                        .concat([item.comment]
+                        .filter(x => typeof(x) === "string" && x !== "" && -1 === frequentlyUsedComments.indexOf(x)))
+                            })
+                }
+            }}
+            onFocus={() => itemFocus({ index: index })}
+            dataSource={[]}
+            ></MyComplete>
+        )
+        let text = (
+            <MyTextArea
+            placeholder={i18nMsg("shortDescription")}
+            value={item.text}
+            onFocus={() => itemFocus({ index: index })}
+            onChange={value => itemUpdate({ index: index, item: { text: value } })}
+            className={["memo", "ta" + index]}
+            ></MyTextArea>
+        )
         return (
             <div>
                 <Card
-                    style={{maxWidth: "420px"}}
+                    style={{maxWidth: "430px"}}
                     title={
                         <div>
-                            {moment.utc(0).seconds(item.timestamp).format("HH:mm:ss")} {item.actor} {item.comment ? "("+item.comment+")":""}
+                            {timepicker} {actor} {comment}
                         </div>
                     }
                     size="small">
-                    {item.text}
+                    {text}
                 </Card>
                 <span style={{ position: "absolute", top: "0.3em", right: 0 }} width="auto">
                     <Tooltip placement="topRight" title={i18nMsg("delete")} >
@@ -105,7 +164,10 @@ const FairyNoteMarkup = props => {
     }
     let handleDoubleClick = e =>{
         let pRect = progressBar.getBoundingClientRect()
-        let offset = e.clientX - pRect.x
+        if (e.pageY > pRect.y-10 || e.pageY < pRect.y - 25){
+            return
+        }
+        let offset = e.pageX - pRect.x
         offset = Math.max(0,offset)
         offset = Math.min(pRect.width,offset)
         let newtime = Math.floor(totalTime * offset / pRect.width)
@@ -147,11 +209,14 @@ FairyNoteMarkup.propTypes = {
 
 
 const mapStateToProps = (state, ownProps) => ({
-    timeline: state.timeline
+    timeline: state.timeline,
+    frequentlyUsedComments: state.settings.frequentlyUsedComments,
+    autoNavigating: state.settings.autoNavigating,
+    autoAddCandidate: state.settings.autoAddCandidate
 })
 
 const mapDispatchToProps = {
-    itemFocus, itemDel, videoGoto, itemUpdate ,itemAdd
+    itemFocus, itemDel, videoGoto, itemUpdate ,itemAdd,settingsUpdate
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FairyNoteMarkup)
