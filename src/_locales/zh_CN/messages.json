@@ -199,6 +199,9 @@
     "MODE_EVENT" : {
         "message": "事件/其他"
     },
+    "MODE_NUMBER" : {
+        "message": "序号"
+    },
     "MODE_CONCERT" : {
         "message": "音乐会"
     },
@@ -216,6 +219,9 @@
     },
     "question": {
         "message": "提问"
+    },
+    "hash": {
+        "message": "#"
     },
     "answer": {
         "message": "回答"
