@@ -202,6 +202,9 @@
     "MODE_CONCERT" : {
         "message": "Concert"
     },
+    "MODE_NUMBER" : {
+        "message": "Number"
+    },
     "MODE_PERFORMANCE" : {
         "message": "Show"
     },
@@ -219,6 +222,9 @@
     },
     "answer": {
         "message": "Answer"
+    },
+    "hash": {
+        "message": "#"
     },
     "interviewee": {
         "message": "Interviewee"
