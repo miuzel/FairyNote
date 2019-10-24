@@ -8,6 +8,8 @@ import { i18nMsg } from '../../constants'
 import csvstringify from 'csv-stringify'
 import csvparse from 'csv-parse/lib/sync'
 import moment from 'moment'
+import subsrt from 'subsrt'
+
 const initialState = []
 
 const getVideo = () => document.querySelector('video')
@@ -215,9 +217,32 @@ export default (state = initialState, { type, payload }) => {
                 let link = document.createElement("a");
                 link.download = "content_"+ getVideoId() +".csv";
                 link.href = "data:text/csv," + output
-                link.click();
+                link.click()
             })
             return state
+        case types.TIMELINE_EXPORT_SRT:
+            //Build the srt content
+            var options = { format: 'srt' };
+
+            var content = subsrt.build(state.items.map((x,i) => {
+                var text = ""
+                if (x.actor){
+                    text = x.actor
+                }
+                if (x.comment.trim()) {
+                    text = text + `(${x.comment})`
+                }
+                text = text + (text !== "" ? ":" : "") + x.text;
+                return {
+                    start: x.timestamp * 1000, 
+                    end: (i+1) === state.items.length ? getVideo().currentTime * 1000 : state.items[i+1].timestamp * 1000 ,
+                    text}
+                }), options)
+            let link = document.createElement("a");
+            link.download = "content_"+ getVideoId() +".srt";
+            link.href = "data:text/srt," + content
+            link.click()
+            return state 
 
         case types.TIMELINE_IMPORT:
             nextState.items = csv2items(payload.csvdata)

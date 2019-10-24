@@ -76,6 +76,9 @@
     "export":{
         "message": "EXPORT CSV"
     },
+    "exportsrt":{
+        "message": "EXPORT SRT"
+    },
     "importSuccess": {
         "message": "FairyNote: CSV data imported, but not saved yet, you can undo this buy FILE > LOAD right now before next autosave."
     },
