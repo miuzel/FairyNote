@@ -39,7 +39,7 @@ const FairyNoteMarkup = props => {
                 let offset = dragX - pRect.x //firefox cannot get e.clientX 
                 offset = Math.max(0,offset)
                 offset = Math.min(pRect.width,offset)
-                let newtime = Math.floor(progressBar.attributes.getNamedItem('aria-valuemax').value * offset / pRect.width)
+                let newtime = progressBar.attributes.getNamedItem('aria-valuemax').value * offset / pRect.width
                 videoGoto({goto: newtime})
             }
         }, false);
@@ -170,7 +170,7 @@ const FairyNoteMarkup = props => {
         let offset = e.pageX - pRect.x
         offset = Math.max(0,offset)
         offset = Math.min(pRect.width,offset)
-        let newtime = Math.floor(totalTime * offset / pRect.width)
+        let newtime = totalTime * offset / pRect.width
         videoGoto({goto: newtime })
         itemAdd()
     }

@@ -103,6 +103,7 @@ export const timelineLoaded = actionCreatorCreator(types.TIMELINE_LOAD)
 export const timelineReset = actionCreatorCreator(types.TIMELINE_RESET)
 export const timelineExport = actionCreatorCreator(types.TIMELINE_EXPORT)
 export const timelineImport = actionCreatorCreator(types.TIMELINE_IMPORT)
+export const timelineExportSrt = actionCreatorCreator(types.TIMELINE_EXPORT_SRT)
 
 export const itemAdd = actionCreatorCreatorWithData(types.ITEM_ADD)
 export const itemCopy = actionCreatorCreatorWithData(types.ITEM_COPY)

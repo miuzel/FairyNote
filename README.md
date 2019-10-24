@@ -12,6 +12,11 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.5.0
+
+- Added a new mode "Number" which should fit most videos 
+- Added a new export mode. Now you can export srt format subtitle out of the timeline. Which should be useful if you are familiar with the YouTube subtitle maker.
+
 ### Change 2.4.2
 
 - Bug Fixes
