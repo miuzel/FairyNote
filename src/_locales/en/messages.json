@@ -250,6 +250,12 @@
     "candidateList": {
         "message": "Frequently used comments"
     },
+    "censoredwordlist": {
+        "message": "Censored words"
+    },
+    "censorwordenabled": {
+        "message": "Replace censored words"
+    },
     "loading":{
         "message": "Loading..."
     },

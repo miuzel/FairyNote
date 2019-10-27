@@ -25,6 +25,20 @@ export const copyTextToClipboard = (text) => {
     message.success(i18nMsg("copied"));
   }
 
+export const getCensoredText = (text, censoredWords) => {
+    var result = text
+    if(censoredWords){
+        for(var w of censoredWords){
+            var re = new RegExp(w,'gi')
+            result = result.replace(re,(match) => {
+                const delimiters = ['|','.',',','`','_','‚','ˆ','•','¦','°','·','„']
+                var delimiter = delimiters[Math.floor(Math.random()*11)].repeat(Math.floor(Math.random()*2)+1)
+                return `${match.split("").join(delimiter)}`
+            })
+        }
+    }
+    return result
+}
 export const getFullText = (items) => {
     let txt = "";
     items.map((item) => {

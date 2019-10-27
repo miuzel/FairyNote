@@ -40,7 +40,12 @@ export const settingsLoadAsync = (payload) => dispatch => {
   const key = "FairyNote#Settings"
   chrome.storage.sync.get([key], function (result) {
     let savedState
-    if (result) {
+    if (result && result[key]) {
+      for (var k in defaultSettings){
+        if(result[key][k] === undefined){
+          result[key][k] = defaultSettings[k]
+        }
+      }
       savedState = result[key];
     }
     if (!savedState) {
@@ -128,4 +133,4 @@ export const toggleMenu = actionCreatorCreator(types.TOGGLE_MENU)
 export const saveSettings = actionCreatorCreator(types.SAVE_SETTINGS)
 export const loadSettings = actionCreatorCreator(types.LOAD_SETTINGS)
 
-export const textCopy = actionCreatorCreator(types.TEXT_COPY)
+export const textCopy = actionCreatorCreatorWithSettings(types.TEXT_COPY)

@@ -3,7 +3,7 @@ import * as types from '../actions/types'
 import { message } from 'antd';
 import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
-import { getFullText, copyTextToClipboard, getVideoId } from '../../utils'
+import { getCensoredText, getFullText, copyTextToClipboard, getVideoId } from '../../utils'
 import { i18nMsg } from '../../constants'
 import csvstringify from 'csv-stringify'
 import csvparse from 'csv-parse/lib/sync'
@@ -200,7 +200,11 @@ export default (state = initialState, { type, payload }) => {
             return nextState
 
         case types.TEXT_COPY:
-            copyTextToClipboard(getFullText(state.items))
+            let text = getFullText(state.items)
+            if (payload.settings.censorWordEnabled) {
+                text = getCensoredText(text,payload.settings.censoredWords)
+            }
+            copyTextToClipboard(text)
             return state
 
         case types.TIMELINE_SAVE:
