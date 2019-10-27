@@ -8,8 +8,10 @@ import Mode from './settings/Mode';
 import AutoSave from './settings/AutoSave';
 import AutoAddCandidate from './settings/AutoAddCandidate';
 import CandidateList from './settings/CandidateList';
+import CensorWordEnabled from './settings/CensorWordEnabled';
 import { i18nMsg } from '../constants'
 import Language from './settings/Language';
+import CensoredWordList from './settings/CensoredWordList';
 
 const FairyNoteSettings = ({ visible, toggleSettings,saveSettings }) => {
     return (
@@ -39,6 +41,8 @@ const FairyNoteSettings = ({ visible, toggleSettings,saveSettings }) => {
                 <AutoSave style={{ margin: "10px" }} type="default" />
                 <AutoAddCandidate style={{ margin: "10px" }} type="default" />
                 <CandidateList style={{ margin: "10px" }}  />
+                <CensorWordEnabled style={{ margin: "10px" }} type="default" />
+                <CensoredWordList style={{ margin: "10px" }}  />
             </div>
 
         </Modal>

@@ -250,6 +250,12 @@
     "candidateList": {
         "message": "备注自动完成列表"
     },
+    "censoredwordlist": {
+        "message": "替换词列表"
+    },
+    "censorwordenabled": {
+        "message": "启用替换词"
+    },
     "loading":{
         "message": "正在加载..."
     },

@@ -3,11 +3,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Modal, Button } from 'antd'
 import {toggleText} from '../redux/actions'
-import {getFullText,copyTextToClipboard} from '../utils'
+import {getFullText,getCensoredText,copyTextToClipboard} from '../utils'
 
 import { i18nMsg } from '../constants'
 
-const FairyNoteText = ({ visible, toggleText,text }) => {
+const FairyNoteText = ({ visible, toggleText,text ,censoredWords}) => {
     return (
         <Modal
             visible={visible}
@@ -16,7 +16,7 @@ const FairyNoteText = ({ visible, toggleText,text }) => {
             title={<div>
                 <span>{i18nMsg("outputText")}</span>
                 <Button type="link" id="copyButton" style={{marginLeft: "10px"}}
-                    icon="copy" onClick={() => copyTextToClipboard(text)}>{i18nMsg("copyOutput")}</Button>
+                    icon="copy" onClick={() => copyTextToClipboard(text) }>{i18nMsg("copyOutput")}</Button>
                 <span>(Ctrl/Command+Shift+Z {i18nMsg("copyAnyTime")})</span>
               </div>
               }
@@ -37,7 +37,9 @@ FairyNoteText.propTypes = {
 
 const mapStateToProps = (state) => ({
     visible: state.status.showingText,
-    text: getFullText(state.timeline.items)
+    text: state.settings.censorWordEnabled ?
+        getCensoredText(getFullText(state.timeline.items), state.settings.censoredWords) :
+        getFullText(state.timeline.items)
 })
 
 const mapDispatchToProps = {

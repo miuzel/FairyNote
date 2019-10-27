@@ -15,6 +15,7 @@ export const defaultSettings ={
     locale: '',
     autoAddCandidate: true,
     language: defaultLanguage,
+    censorWordEnabled: true,
     autoSave: true,
     autoNavigating: false,
     defaultMode: "MODE_HOTLINE",
