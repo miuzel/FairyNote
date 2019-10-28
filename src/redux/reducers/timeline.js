@@ -220,7 +220,7 @@ export default (state = initialState, { type, payload }) => {
             ), (_, output) => {
                 let link = document.createElement("a");
                 link.download = "content_"+ getVideoId() +".csv";
-                link.href = "data:text/csv," + output
+                link.href = "data:text/csv," + encodeURIComponent(output)
                 link.click()
             })
             return state
@@ -244,7 +244,7 @@ export default (state = initialState, { type, payload }) => {
                 }), options)
             let link = document.createElement("a");
             link.download = "content_"+ getVideoId() +".srt";
-            link.href = "data:text/srt," + content
+            link.href = "data:text/srt," + encodeURIComponent(content)
             link.click()
             return state 
 
