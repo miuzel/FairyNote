@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.6.1
+
+- Fixed encoding of csv and srt files.
+
 ### Change 2.6.0
 
 - Added a new feature to replace special words in the output with visually recognizable forms.
