@@ -64,7 +64,7 @@ export const modeSequentialCreator = (defaultCandidates, prefix) => ({
 export const modeRepeatCreator = (defaultCandidates) => ({
     getDefaultCandidates: () => defaultCandidates.map(x=>i18nMsg(x)),
     getNewSpeaker: timelineitems => ( timelineitems && timelineitems.length > 0 ) ? timelineitems[timelineitems.length-1].actor : "",
-    rearrangeTimeline:  timelineitems => timelineitems
+    rearrangeTimeline:  timelineitems => timelineitems.slice().sort((a, b) => a.timestamp - b.timestamp)
 })
 export const modeBackforthCreator = (defaultCandidates, prefix1, prefix2) => ({
     getDefaultCandidates: () => defaultCandidates.map(x=>i18nMsg(x)),
