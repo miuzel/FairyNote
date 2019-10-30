@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.6.2
+
+- Fixed sorting in speech mode.
+
 ### Change 2.6.1
 
 - Fixed encoding of csv and srt files.
