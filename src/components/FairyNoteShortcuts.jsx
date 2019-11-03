@@ -20,7 +20,12 @@ export const bindShortcuts = (props) => {
         keysToBind = keysToBind.map(x => x.substring(1))
         keysToBind.map(k => {
             Mousetrap.unbind(k)
-            Mousetrap.bindGlobal(k, fn)
+            Mousetrap.bindGlobal(k, (e) => {
+                if (e.preventDefault) {
+                    e.preventDefault()
+                } 
+                fn()
+            })
             return k
         })
     }

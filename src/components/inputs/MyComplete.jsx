@@ -5,7 +5,9 @@ class MyComplete extends React.Component {
   state = {
     candidates: {
       dataSource: this.props.dataSource
-    }
+    },
+    value: this.props.value,
+    dirty: false
   };
   handleSearch = q => {
     let res = [];
@@ -28,6 +30,18 @@ class MyComplete extends React.Component {
       }
     })
   }
+  handleChange(value){
+    this.setState({value,dirty:true})
+  }
+  handleBlur(){
+    if(this.state.dirty){
+      this.setState({dirty:false})
+      this.props.onChange(this.state.value)
+    }
+    if(this.props.onBlur){
+      this.props.onBlur()
+    }
+  }
   render() {
     const { dataSource } = this.state.candidates;
     return (
@@ -35,12 +49,12 @@ class MyComplete extends React.Component {
         dataSource={dataSource}
         style={{ width: this.props.width , marginRight: "10px"}}
         size="small"
-        value={this.props.value}
+        value={this.state.value}
         prefix={this.props.prefix}
         onSearch={this.handleSearch}
         placeholder={this.props.placeholder}
-        onChange={(v) => this.props.onChange(v)}
-        onBlur={this.props.onBlur? this.props.onBlur : ()=>{}}
+        onChange={this.handleChange.bind(this)}
+        onBlur={this.handleBlur.bind(this)}
         onFocus={this.props.onFocus}
         getPopupContainer={() => this.props.container}
       />

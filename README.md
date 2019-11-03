@@ -12,6 +12,11 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.6.3
+
+- Optimized saving pattern, now FairyNote do less saving attempts. This may help when you have problem syncing the data across devices.
+- No longer select full text when a card is selected.
+
 ### Change 2.6.2
 
 - Fixed sorting in speech mode.
