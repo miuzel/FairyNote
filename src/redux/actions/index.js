@@ -1,9 +1,12 @@
 /* global chrome */
 import * as types from './types'
 import { message } from 'antd'
+import uuidv4 from 'uuid/v4';
 import { getVideoId } from '../../utils';
 import { defaultSettings } from '../../constants'
 import { i18nMsg } from '../../constants'
+import LZString from 'lz-string'
+
 const actionCreatorCreator = actionType => payload => ({
   type: actionType,
   payload
@@ -61,10 +64,16 @@ export const settingsLoadAsync = (payload) => dispatch => {
 
 export const timelineLoadAsync = (payload) => (dispatch, getState) => {
   let key = getVideoId()
-  chrome.storage.sync.get([key], function (result) {
+  if (key === ""){
+      return
+  }
+  chrome.storage.local.get([key], function (result) {
     let savedState
     if (result) {
-      savedState = result[key];
+      if(result[key] !== undefined){
+        savedState = JSON.parse(LZString.decompressFromUTF16(result[key]));
+        savedState.items = savedState.items.map(x=>({...x,id:uuidv4()}))
+      }
     }
     if (!savedState) {
       const state = getState()

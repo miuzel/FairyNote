@@ -25,6 +25,15 @@
     "saveSuccess":{
         "message": "FairyNote: Saved."
     },
+    "saving":{
+        "message": "Saving... 💾"
+    },
+    "pendsaving":{
+        "message": "Saving... "
+    },
+    "changed":{
+        "message": "Content changed"
+    },
     "sthWrong":{
         "message": "Oops, something went wrong."
     },

@@ -49,7 +49,7 @@ class MyComplete extends React.Component {
         dataSource={dataSource}
         style={{ width: this.props.width , marginRight: "10px"}}
         size="small"
-        value={this.state.value}
+        value={this.state.dirty ? this.state.value : this.props.value}
         prefix={this.props.prefix}
         onSearch={this.handleSearch}
         placeholder={this.props.placeholder}
