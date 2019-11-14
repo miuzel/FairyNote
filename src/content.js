@@ -10,6 +10,7 @@ import { i18nMsg } from './constants'
 import { Spin ,message} from 'antd'
 import i18n from './_locales/i18n'
 import './index.css'
+import LZString from 'lz-string'
 
 let initialized = false;
 
@@ -93,11 +94,30 @@ function init(onfinish) {
     document.body.appendChild(app);
 
     const key = "FairyNote#Settings"
-    chrome.storage.sync.get([key], function (result) {
+    chrome.storage.sync.get(null, function (result) {
       if (result) {
         let savedState = result[key];
         if(savedState){
           i18n.changeLanguage(savedState.language)
+        }
+        let migrating = {}
+        let keys = []
+        // find all synced data
+        for (let k in result){
+          if(k !== key){
+            console.log("migrate data "+k)
+            keys.push(k)
+            // compress 
+            migrating[k] =  LZString.compressToUTF16(JSON.stringify(result[k]))
+          }
+        }
+        // save synced data to local
+        if (migrating !== {}){
+          chrome.storage.local.set(migrating,()=>{console.log("compressed data saved.")})
+        }
+        // remove the synced keys
+        if(keys){
+          chrome.storage.sync.remove(keys, ()=>{console.log("removed synced keys")})
         }
       }
       ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}

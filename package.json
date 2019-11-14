@@ -1,6 +1,6 @@
 {
-  "name": "FairyNote",
-  "version": "2.6.4",
+  "name": "fairy-note",
+  "version": "2.7.0",
   "private": true,
   "dependencies": {
     "@ant-design/dark-theme": "^0.2.2",
@@ -13,6 +13,7 @@
     "eslint-utils": "^1.4.1",
     "i18next": "^17.0.11",
     "less": "^3.9.0",
+    "lz-string": "^1.4.4",
     "moment": "^2.24.0",
     "mousetrap": "^1.6.3",
     "mousetrap-global-bind": "^1.1.0",
