@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getClientEnvironment = require('./env');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const packageConfig = require('../package');
 
 
 // Note: defined here because it will be used more than once.
@@ -107,6 +108,13 @@ module.exports = {
     },
     module: {
         rules: [{
+                test: /FairyNoteFooter.jsx$/,
+                loader: 'string-replace-loader',
+                options: {
+                  search: '--VERSION--',
+                  replace: packageConfig.version,
+                }
+              },{
             oneOf: [
                 // "url" loader works just like "file" loader but it also embeds
                 // assets smaller than specified size as data URLs to avoid requests.
