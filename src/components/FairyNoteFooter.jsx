@@ -42,7 +42,7 @@ const FairyNoteFooter = props => {
       © 2019 FairyNote --VERSION--{" "}
       {autoSave
         ? changed
-            ? i18nMsg("pendsaving")
+            ? i18nMsg("changed")
             : ""
         : changed
             ? saving
