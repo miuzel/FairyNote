@@ -9,6 +9,7 @@ import csvstringify from 'csv-stringify'
 import csvparse from 'csv-parse/lib/sync'
 import moment from 'moment'
 import subsrt from 'subsrt'
+import LZString from 'lz-string'
 
 const initialState = []
 
@@ -52,9 +53,7 @@ export default (state = initialState, { type, payload }) => {
                 active: true
             }])
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
-            if(payload.autoSave) {
-                saveState(nextState,true)
-            }
+            nextState.changed = true
             return nextState
 
         case types.ITEM_COPY:
@@ -78,9 +77,7 @@ export default (state = initialState, { type, payload }) => {
             }
             nextState.items.splice(oldItemIndex, 0, newItem)
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
-            if(payload.autoSave) {
-                saveState(nextState,true)
-            }
+            nextState.changed = true
             return nextState
 
         case types.ITEM_DEL:
@@ -101,9 +98,7 @@ export default (state = initialState, { type, payload }) => {
                 }
             }
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
-            if(payload.autoSave) {
-                saveState(nextState,true)
-            }
+            nextState.changed = true
             return nextState
 
         case types.ITEM_FOCUS:
@@ -146,9 +141,7 @@ export default (state = initialState, { type, payload }) => {
                     } )
                     newItem = state.items[updateIndex]
                     videoElement.currentTime = newItem.timestamp
-                    if(payload.autoSave) {
-                        saveState(nextState,true)
-                    }
+                    nextState.changed = true
                     return nextState
                 }
                 if (payload.deltaTime !== undefined) {
@@ -179,17 +172,13 @@ export default (state = initialState, { type, payload }) => {
                         newItem.actor = candidates[0]
                     }
                     nextState.items[updateIndex] = newItem
-                    if(payload.autoSave) {
-                        saveState(nextState,true)
-                    }
+                    nextState.changed = true
                     return nextState
                 }
             }
             nextState.items[updateIndex] = newItem
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
-            if(payload.autoSave && !payload.ignoreAutoSave) {
-                saveState(nextState,true)
-            }
+            nextState.changed = true
             return nextState
 
         case types.TIMELINE_LOAD:
@@ -208,8 +197,11 @@ export default (state = initialState, { type, payload }) => {
             return state
 
         case types.TIMELINE_SAVE:
-            saveState(state)
-            return state
+            if(nextState.changed){
+                saveState(state,payload.quiet)
+                nextState.changed = false
+            }
+            return nextState
         case types.TIMELINE_EXPORT:
 
             csvstringify(state.items.map(
@@ -277,13 +269,29 @@ const csv2items = csv => {
 const saveState = (s, quiet) => {
     let key = getVideoId()
     let file = {}
-    file[key] = {
-        mode: s.mode,
-        items: s.items
+    if (key === ""){
+        return
     }
-    chrome.storage.sync.set(file, () => {
+    let compressed = {
+        mode: s.mode,
+        items: s.items.map(x => {
+            let item = {
+                actor: x.actor,
+                text: x.text,
+                timestamp: x.timestamp,
+                comment: x.comment
+            }
+            if(x.active){
+                item.active = true
+            }
+            return item
+        })
+    }
+    file[key] = LZString.compressToUTF16(JSON.stringify(compressed))
+    chrome.storage.local.set(file, () => {
         if (!quiet) {
             message.success(i18nMsg("saveSuccess"));
         }
     })
+
 }

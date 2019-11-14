@@ -7,7 +7,7 @@
     "scripts": ["app/background.js"]
   },
   "default_locale": "zh_CN",
-  "permissions": [ "tabs", "storage" ],
+  "permissions": [ "tabs", "storage","unlimitedStorage" ],
   "page_action": {
     "default_title": "__MSG_extensionTooltip__",
     "default_icon": {

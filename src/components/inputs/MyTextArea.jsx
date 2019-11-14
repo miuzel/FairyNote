@@ -24,7 +24,7 @@ export default class MyTextArea extends Component {
         return (
             <TextArea placeholder={this.props.placeholder}
                 ref={this.textArea}
-                value={this.state.value}
+                value={this.state.dirty ? this.state.value : this.props.value}
                 onFocus={this.props.onFocus}
                 onBlur={this.handleBlur.bind(this)}
                 size="small" 

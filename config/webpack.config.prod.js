@@ -8,6 +8,8 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const packageConfig = require('../package');
+
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].css';
 
@@ -121,6 +123,13 @@ module.exports = {
               },
             ],
             include: paths.appSrc,
+          },{
+            test: /FairyNoteFooter.jsx$/,
+            loader: 'string-replace-loader',
+            options: {
+              search: '--VERSION--',
+              replace: packageConfig.version,
+            }
           },
           {
             oneOf: [
