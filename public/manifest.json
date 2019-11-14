@@ -1,5 +1,6 @@
 {
-  "name": "FairyNote2",
+  "name": "FairyNote 2",
+  "short_name": "FairyNote2",
   "description": "__MSG_extensionDescription__",
   "version": "--VERSION--",
   "manifest_version": 2,

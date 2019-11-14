@@ -198,7 +198,7 @@ export default (state = initialState, { type, payload }) => {
 
         case types.TIMELINE_SAVE:
             if(nextState.changed){
-                saveState(state,payload.quiet)
+                saveState(state,payload ? payload.quiet : false)
                 nextState.changed = false
             }
             return nextState
