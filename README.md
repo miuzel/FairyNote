@@ -12,6 +12,12 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.7.0
+
+- Use local storage instead of account syncronized storage which is more limited in size.
+- Improve auto saving machanism and make save data smaller
+- TODO: save data management facilities.
+
 ### Change 2.6.3
 
 - Optimized saving pattern, now FairyNote do less saving attempts. This may help when you have problem syncing the data across devices.

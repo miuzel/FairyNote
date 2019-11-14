@@ -26,13 +26,13 @@
         "message": "FairyNote: Saved."
     },
     "saving":{
-        "message": "Saving... 💾"
+        "message": "Auto saving... 💾"
     },
     "pendsaving":{
-        "message": "Saving... "
+        "message": "Auto saving... "
     },
     "changed":{
-        "message": "Content changed"
+        "message": "Changes detected, please save or turn on auto save."
     },
     "sthWrong":{
         "message": "Oops, something went wrong."

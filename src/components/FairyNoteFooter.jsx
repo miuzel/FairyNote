@@ -40,7 +40,7 @@ const FairyNoteFooter = props => {
   return (
     <div id="extensionfooter">
       © 2019 FairyNote --VERSION--{" "}
-      {autoSave
+      {!autoSave
         ? changed
             ? i18nMsg("changed")
             : ""
