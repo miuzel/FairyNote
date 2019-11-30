@@ -10,6 +10,7 @@ export const ITEM_COPY = 'ITEM_COPY'
 export const ITEM_DEL = 'ITEM_DEL'
 export const ITEM_UPDATE = 'ITEM_UPDATE'
 export const ITEM_FOCUS = 'ITEM_FOCUS'
+export const ITEM_BLUR = 'ITEM_BLUR'
 
 export const VIDEO_GOTO = 'VIDEO_GOTO'
 export const VIDEO_GOTO_END = 'VIDEO_GOTOEND'

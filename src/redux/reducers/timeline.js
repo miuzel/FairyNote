@@ -79,6 +79,13 @@ export default (state = initialState, { type, payload }) => {
             nextState.items = modes[state.mode].rearrangeTimeline(nextState.items)
             nextState.changed = true
             return nextState
+        case types.ITEM_BLUR:
+            let activeIndex = nextState.items.findIndex(x=> x.active)
+            let ta = document.querySelector('textarea.ant-input.memo.ta'+activeIndex)
+            if(ta){
+                ta.blur()
+            }
+            return state
 
         case types.ITEM_DEL:
             if(payload && payload.index !== undefined){
