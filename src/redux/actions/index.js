@@ -125,6 +125,7 @@ export const itemUpdate = actionCreatorCreatorWithData(types.ITEM_UPDATE)
 
 export const itemDel = actionCreatorCreatorWithData(types.ITEM_DEL)
 export const itemFocus = actionCreatorCreatorWithSettings(types.ITEM_FOCUS)
+export const itemBlur = actionCreatorCreator(types.ITEM_BLUR)
 
 export const videoGoto = actionCreatorCreator(types.VIDEO_GOTO)
 export const videoGotoEnd = actionCreatorCreator(types.VIDEO_GOTO_END)
