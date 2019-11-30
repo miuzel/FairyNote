@@ -42,7 +42,7 @@ export const getCensoredText = (text, censoredWords) => {
 export const getFullText = (items) => {
     let txt = "";
     items.map((item) => {
-        let string = `${moment.utc(0).seconds(item.timestamp).format("HH:mm:ss")} ${item.actor}`
+        let string = `${moment.utc(0).seconds(item.timestamp ? item.timestamp : 0).format("HH:mm:ss")} ${item.actor}`
         if (item.comment.trim()) {
             string = string + `(${item.comment})`
         }
