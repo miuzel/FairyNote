@@ -12,6 +12,10 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.7.2
+
+- Minor fix.
+
 ### Change 2.7.1
 
 - Minor fix. Sometimes app crashes when deleting items using keyboard shortcut.
