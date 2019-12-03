@@ -43,7 +43,7 @@ export const getFullText = (items) => {
     let txt = "";
     items.map((item) => {
         let string = `${moment.utc(0).seconds(item.timestamp ? item.timestamp : 0).format("HH:mm:ss")} ${item.actor}`
-        if (item.comment.trim()) {
+        if (item.comment && item.comment.trim()) {
             string = string + `(${item.comment})`
         }
         string = string + `: ${item.text}\n`;

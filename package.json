@@ -1,6 +1,6 @@
 {
   "name": "fairy-note",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "private": true,
   "dependencies": {
     "@ant-design/dark-theme": "^0.2.2",
