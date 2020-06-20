@@ -12,6 +12,12 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.7.3
+
+- Adapt Youtube Chapter feature.
+- Upgrade Antd Components
+- Change toggle shortcut to Ctrl+Shift+G
+
 ### Change 2.7.2
 
 - Minor fix.

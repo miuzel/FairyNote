@@ -31,6 +31,7 @@ chrome.runtime.onMessage.addListener(
 
 function toggle(app) {
   if(!initialized){
+    console.log("toggle app not initialized")
     return
   }
   console.log("toggle app")
@@ -94,7 +95,7 @@ function init(onfinish) {
     document.body.appendChild(app);
 
     const key = "FairyNote#Settings"
-    chrome.storage.sync.get(null, function (result) {
+    chrome.storage.sync.get(key, function (result) {
       if (result) {
         let savedState = result[key];
         if(savedState){
