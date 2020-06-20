@@ -3,8 +3,16 @@
         "message": "FairyNote",
         "description": "Extension name"
     },
+    "extensionNameLong":{
+        "message": "FairyNote 2 - YouTube章节时间点生成器",
+        "description": "Extension name"
+    },
+    "generatedByFairyNote":{
+        "message": "本时间点清单由Chrome、Firefox插件FairyNote2生成",
+        "description": "Generation Watermark"
+    },
     "extensionDescription" :{
-        "message": "FairyNote用于记录youtube直播或视频中的时间链接。 用于MOOC课程，TED课程，音乐现场表演，访谈，纪录片等。您可以复制输出信息并将其放入视频的评论或说明中。",
+        "message": "FairyNote用于记录youtube直播或视频中的时间链接。 用于MOOC课程，TED课程，音乐现场表演，访谈，纪录片等。您可以复制输出信息并将其放入视频的评论或说明中。 将时间点文本放在视频的描述区，用户可以在进度条上看到分段的描述",
         "description": "Extension description"
     },
     "extensionTooltip": {

@@ -26,6 +26,7 @@ export const bindShortcuts = (props) => {
                 } 
                 fn()
             })
+            console.log(k + " binded.")
             return k
         })
     }
@@ -132,7 +133,7 @@ const getShortcuts = ({
         },
         {
             name: "toggle",
-            key: "Command/Ctrl + Shift + F",
+            key: "Command/Ctrl + Shift + G",
             action: (e) => toggle()
         }
     ]

@@ -23,16 +23,16 @@ export const copyTextToClipboard = (text) => {
     //other elements can get access to this.
     document.body.removeChild(copyFrom);
     message.success(i18nMsg("copied"));
-  }
+}
 
 export const getCensoredText = (text, censoredWords) => {
     var result = text
-    if(censoredWords){
-        for(var w of censoredWords){
-            var re = new RegExp(w,'gi')
-            result = result.replace(re,(match) => {
-                const delimiters = ['|','.',',','`','_','‚','ˆ','•','¦','°','·','„']
-                var delimiter = delimiters[Math.floor(Math.random()*11)].repeat(Math.floor(Math.random()*2)+1)
+    if (censoredWords) {
+        for (var w of censoredWords) {
+            var re = new RegExp(w, 'gi')
+            result = result.replace(re, (match) => {
+                const delimiters = ['|', '.', ',', '`', '_', '‚', 'ˆ', '•', '¦', '°', '·', '„']
+                var delimiter = delimiters[Math.floor(Math.random() * 11)].repeat(Math.floor(Math.random() * 2) + 1)
                 return `${match.split("").join(delimiter)}`
             })
         }
@@ -42,22 +42,30 @@ export const getCensoredText = (text, censoredWords) => {
 export const getFullText = (items) => {
     let txt = "";
     items.map((item) => {
-        let string = `${moment.utc(0).seconds(item.timestamp ? item.timestamp : 0).format("HH:mm:ss")} ${item.actor}`
+        let string = `${moment.utc(0).seconds(item.timestamp ? item.timestamp : 0).format("HH:mm:ss")} - `
+        let actor = item.actor
         if (item.comment && item.comment.trim()) {
-            string = string + `(${item.comment})`
+            actor = actor + `(${item.comment})`
         }
-        string = string + `: ${item.text}\n`;
+        if(actor){
+            string = string + actor
+            if(item.text){
+                string = string + ": "
+            }
+        }
+        string = string + `${item.text}\n`;
         txt = txt + string;
         return item;
     });
+    txt = txt ? txt + "\n" + i18nMsg("generatedByFairyNote") : ""
     return txt;
 }
 
 export const getVideoId = () => {
     let key = ''
     let m = document.URL.match(/watch\?v=([^&]+)/);
-    if (m){
-       key = m[1]
+    if (m) {
+        key = m[1]
     }
-    return key 
-  };
+    return key
+};

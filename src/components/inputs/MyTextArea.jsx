@@ -32,7 +32,7 @@ export default class MyTextArea extends Component {
                 // some how this function will miss this object so 
                 // unnessesarily bind here..
                 onChange={this.handleTextChange.bind(this)}
-                autosize
+                autoSize
             ></TextArea>
         )
     }

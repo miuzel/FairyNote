@@ -38,7 +38,7 @@ export class FairyNoteTimelineItem extends Component {
       }
       this.selectTimeout = setTimeout(() => {
         this.scroll()
-        this.textArea.current.textArea.current.textAreaRef.focus()
+        this.textArea.current.textArea.current.focus()
       },0)
       // forwarded to the real textArea
     }
@@ -47,7 +47,7 @@ export class FairyNoteTimelineItem extends Component {
     if (this.textArea && this.props.active && !prevProps.active){
       // forwarded to the real textArea
       this.scroll()
-      this.textArea.current.textArea.current.textAreaRef.focus()
+      this.textArea.current.textArea.current.focus()
     }
   }
   textArea = React.createRef()
