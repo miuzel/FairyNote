@@ -35,6 +35,18 @@ class ChromeMock {
                         }
                     }
                     fn(res)
+                },
+                remove: (keys,fn) => {
+                    fn()
+                }
+            },
+            local: {
+                set: (file,fn) => {
+                    console.log("save call")
+                    for(let k in file){
+                        this.storage.data[k] = file[k]
+                    }
+                    fn()
                 }
             }
         }
