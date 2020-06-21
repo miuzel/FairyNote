@@ -91,8 +91,9 @@ export class FairyNoteTimelineItem extends Component {
         width="90px"
         value={item.timestamp}
         onChange={value => {
-          if (autoNavigating) { videoGoto({ goto: value }) }
-          itemUpdate({ index: index, item: { timestamp: value } })
+          var newValue = value >= 0 ? value : 0
+          if (autoNavigating) { videoGoto({ goto: newValue }) }
+          itemUpdate({ index: index, item: { timestamp: newValue } })
         }}
         onFocus={() => itemFocus({ index: index })}
         container={container}
