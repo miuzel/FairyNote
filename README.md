@@ -12,6 +12,11 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 ## FairyNote 2
 
+### Change 2.7.5
+
+- User can now close FairyNote with extension icon on youtube pages other than video page.
+- Minor bug fix: limit timestamps to prevent negative values.
+
 ### Change 2.7.4
 
 - Automatically add first section which is needed for youtube to activate the chapter feature.
