@@ -7,6 +7,10 @@
         "message": "FairyNote 2 - YouTube章节时间点生成器",
         "description": "Extension name"
     },
+    "addFirstChapter": {
+        "message": "开始",
+        "description": "Extension name"
+    },
     "generatedByFairyNote":{
         "message": "本时间点清单由Chrome、Firefox插件FairyNote2生成",
         "description": "Generation Watermark"

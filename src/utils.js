@@ -57,6 +57,9 @@ export const getFullText = (items) => {
         txt = txt + string;
         return item;
     });
+    if (txt.substring(0,8) !== "00:00:00") {
+        txt = "00:00:00 - " + i18nMsg("addFirstChapter") + "\n" + txt
+    }
     txt = txt ? txt + "\n" + i18nMsg("generatedByFairyNote") : ""
     return txt;
 }
