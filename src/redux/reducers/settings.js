@@ -1,10 +1,13 @@
 /* global chrome */
 import * as types from '../actions/types'
+import i18n from 'i18next';
 import { message } from 'antd';
-import { defaultSettings,i18nMsg } from '../../constants'
-import i18n from '../../_locales/i18n'
+import defaultSettings from '../../defaultSettings'
 
-export default (state = defaultSettings, { type, payload }) => {
+import i18next from 'i18next'
+
+const { t } = i18next
+const settings = (state = defaultSettings, { type, payload }) => {
     const key = "FairyNote#Settings"
     switch (type) {
     case types.SETTINGS_UPDATE:
@@ -16,7 +19,7 @@ export default (state = defaultSettings, { type, payload }) => {
         file = {}
         file[key] = state
         chrome.storage.sync.set(file, () => {
-            message.success(i18nMsg("saveSuccess"));
+            message.success(t("saveSuccess"));
         })
         return state
     case types.LOAD_SETTINGS:
@@ -35,3 +38,5 @@ export default (state = defaultSettings, { type, payload }) => {
         return state
     }
 }
+
+export default settings
