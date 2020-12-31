@@ -1,0 +1,43 @@
+{
+  "name": "__MSG_extensionNameLong__",
+  "short_name": "FairyNote2",
+  "description": "__MSG_extensionDescription__",
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.bundle.js"]
+  },
+  "default_locale": "zh_CN",
+  "permissions": [ "tabs", "storage","unlimitedStorage" ],
+
+  "page_action": {
+    "default_title": "__MSG_extensionTooltip__",
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [{
+    "matches": [ "*://www.youtube.com/*" ],
+    "js": ["contentScript.bundle.js"],
+    "css": ["content.styles.css"]
+  }],
+  "web_accessible_resources": [
+    "content.styles.css"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "addon@FairyNote2",
+      "strict_min_version": "54.0"
+    }
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

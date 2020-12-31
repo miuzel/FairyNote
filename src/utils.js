@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { message } from 'antd';
-import { i18nMsg } from './constants'
+import i18n from './_locales/i18n';
 
 
 export const copyTextToClipboard = (text) => {
@@ -22,7 +22,7 @@ export const copyTextToClipboard = (text) => {
     //Remove the textbox field from the document.body, so no other JavaScript nor 
     //other elements can get access to this.
     document.body.removeChild(copyFrom);
-    message.success(i18nMsg("copied"));
+    message.success(i18n.t("copied"));
 }
 
 export const getCensoredText = (text, censoredWords) => {
@@ -58,9 +58,9 @@ export const getFullText = (items) => {
         return item;
     });
     if (txt.substring(0,8) !== "00:00:00") {
-        txt = "00:00:00 - " + i18nMsg("addFirstChapter") + "\n" + txt
+        txt = "00:00:00 - " + i18n.t("addFirstChapter") + "\n" + txt
     }
-    txt = txt ? txt + "\n" + i18nMsg("generatedByFairyNote") : ""
+    txt = txt ? txt + "\n" + i18n.t("generatedByFairyNote") : ""
     return txt;
 }
 
