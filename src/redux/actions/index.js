@@ -3,10 +3,11 @@ import * as types from './types'
 import { message } from 'antd'
 import uuidv4 from 'uuid/v4';
 import { getVideoId } from '../../utils';
-import { defaultSettings } from '../../constants'
-import { i18nMsg } from '../../constants'
-import LZString from 'lz-string'
+import defaultSettings from '../../defaultSettings'
+import i18next from 'i18next'
 
+import LZString from 'lz-string'
+const { t } = i18next
 const actionCreatorCreator = actionType => payload => ({
   type: actionType,
   payload
@@ -55,7 +56,7 @@ export const settingsLoadAsync = (payload) => dispatch => {
       savedState = defaultSettings
     }
     if (!payload.quiet) {
-      message.success(i18nMsg("loadSuccess"));
+      message.success(t("loadSuccess"));
     }
     dispatch(loadSettings(savedState))
   })
@@ -83,7 +84,7 @@ export const timelineLoadAsync = (payload) => (dispatch, getState) => {
       };
     }
     if (!payload.quiet) {
-      message.success(i18nMsg("loadSuccess"));
+      message.success("loadSuccess");
     }
     dispatch(timelineLoaded(savedState))
   })
@@ -99,7 +100,7 @@ export const timelineImportAsync = (payload) => dispatch => {
       reader.onload = function (e) {
         let data = e.target.result
         if (!payload.quiet){
-          message.success(i18nMsg("importSuccess"));
+          message.success(t("importSuccess"));
         }
         dispatch(timelineImport({
           csvdata: data

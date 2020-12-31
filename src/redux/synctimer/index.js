@@ -1,8 +1,10 @@
 import { message } from 'antd';
 import moment from 'moment';
-import { i18nMsg } from '../../constants';
+import i18next from 'i18next';
 const declaration = 'INCOGRESJULY4176TheunaimosDclrtfdAWvbypwgqkHMjFPzxBK'
 var syncTimer 
+
+const t = i18next.t
 export const encodeWithDeclaration = (number) => {
     let str = number > 0 ? "" : "8"
     let num = number > 0 ? Math.floor(number) : Math.floor(-number)
@@ -17,9 +19,9 @@ export const encodeWithDeclaration = (number) => {
 
 export const startRevealMagicWord = () => {
     if(!syncTimer){
-        message.info(`FairyNote ${i18nMsg("magicword")}: `+ genMagicWord())
+        message.info(`FairyNote ${t("magicword")}: `+ genMagicWord())
         syncTimer = setInterval(()=>{
-            message.info(`FairyNote ${i18nMsg("magicword")}: `+ genMagicWord(), 15)
+            message.info(`FairyNote ${t("magicword")}: `+ genMagicWord(), 15)
         },300000)
     }
 }

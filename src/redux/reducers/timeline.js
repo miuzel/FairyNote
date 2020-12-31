@@ -4,18 +4,19 @@ import { message } from 'antd';
 import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
 import { getCensoredText, getFullText, copyTextToClipboard, getVideoId } from '../../utils'
-import { i18nMsg } from '../../constants'
-import csvstringify from 'csv-stringify'
+import i18next from 'i18next';
+import csvstringify from 'csv-stringify/lib/browser'
 import csvparse from 'csv-parse/lib/sync'
 import moment from 'moment'
 import subsrt from 'subsrt'
 import LZString from 'lz-string'
 
+const t = i18next.t
 const initialState = []
 
 const getVideo = () => document.querySelector('video')
 
-export default (state = initialState, { type, payload }) => {
+const timeline = (state = initialState, { type, payload }) => {
     let nextState = { ...state }
     let videoElement = getVideo()
     switch (type) {
@@ -297,8 +298,11 @@ const saveState = (s, quiet) => {
     file[key] = LZString.compressToUTF16(JSON.stringify(compressed))
     chrome.storage.local.set(file, () => {
         if (!quiet) {
-            message.success(i18nMsg("saveSuccess"));
+            message.success(t("saveSuccess"));
         }
     })
 
 }
+
+
+export default timeline

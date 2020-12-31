@@ -1,5 +1,7 @@
-import { i18nMsg } from '../../constants'
 
+import i18next from 'i18next';
+
+const t = i18next.t
 export const getMaxSpeaker = (input, prefix) => {
     let scene = prefix
     let scenePattern = new RegExp(scene + "(\\d+)","g")
@@ -57,27 +59,27 @@ export const sortArray = (input, prefix) => {
 
 
 export const modeSequentialCreator = (defaultCandidates, prefix) => ({
-    getDefaultCandidates: () => defaultCandidates.map(x=>i18nMsg(x)),
-    getNewSpeaker: timelineitems => getMaxSpeaker(timelineitems,i18nMsg(prefix)),
-    rearrangeTimeline:  timelineitems => sortArray(timelineitems,i18nMsg(prefix))
+    getDefaultCandidates: () => defaultCandidates.map(x=>t(x)),
+    getNewSpeaker: timelineitems => getMaxSpeaker(timelineitems,t(prefix)),
+    rearrangeTimeline:  timelineitems => sortArray(timelineitems,t(prefix))
 })
 export const modeRepeatCreator = (defaultCandidates) => ({
-    getDefaultCandidates: () => defaultCandidates.map(x=>i18nMsg(x)),
+    getDefaultCandidates: () => defaultCandidates.map(x=>t(x)),
     getNewSpeaker: timelineitems => ( timelineitems && timelineitems.length > 0 ) ? timelineitems[timelineitems.length-1].actor : "",
     rearrangeTimeline:  timelineitems => timelineitems.slice().sort((a, b) => a.timestamp - b.timestamp)
 })
 export const modeBackforthCreator = (defaultCandidates, prefix1, prefix2) => ({
-    getDefaultCandidates: () => defaultCandidates.map(x=>i18nMsg(x)),
+    getDefaultCandidates: () => defaultCandidates.map(x=>t(x)),
     getNewSpeaker: timelineitems => {
         if (timelineitems.length === 0) {
-            return getMaxSpeaker(timelineitems, i18nMsg(prefix1))
+            return getMaxSpeaker(timelineitems, t(prefix1))
         }
 
-        if (timelineitems.length && timelineitems[timelineitems.length - 1].actor === i18nMsg(prefix2)) {
-            return getMaxSpeaker(timelineitems, i18nMsg(prefix1))
+        if (timelineitems.length && timelineitems[timelineitems.length - 1].actor === t(prefix2)) {
+            return getMaxSpeaker(timelineitems, t(prefix1))
         } else {
-            return i18nMsg(prefix2)
+            return t(prefix2)
         }
     },
-    rearrangeTimeline:  timelineitems => sortArray(timelineitems,i18nMsg(prefix1))
+    rearrangeTimeline:  timelineitems => sortArray(timelineitems,t(prefix1))
 })
