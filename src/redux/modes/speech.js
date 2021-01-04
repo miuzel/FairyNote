@@ -1,2 +1,2 @@
-import {modeRepeatCreator} from './utils'
+import {modeRepeatCreator} from './homodes'
 export default modeRepeatCreator(["host"])

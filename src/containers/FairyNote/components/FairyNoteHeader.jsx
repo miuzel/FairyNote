@@ -74,6 +74,8 @@ const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsy
             onClick: toggleHelp
         }
     ]
+    console.log("walawala")
+    console.log(container)
     return (
         <div id="pageheader" style={{display:"inline-block",whiteSpace:"nowrap"}}> 
 
@@ -92,31 +94,31 @@ const FairyNoteHeader = ({ toggleMenu, defaultMode, showingMenu ,timelineLoadAsy
                       size="small"  onClick={()=>toggleHelp()}></QuestionCircleFilled>
 
             </span>
-        
-        <Drawer
-          title={`${t("extensionName")} - ${t("menu")}`}
-          placement="left"
-          style={{
-              overflowX: "hidden",
-              transitionProperty: "width",
-              transitionDuration: "0.3s",
-              transitionTimingFunction: "cubic-bezier(0.7, 0.3, 0.1, 1)",
-          }}
-          maskStyle={{
-              position:"absolute"
-          }}
-          closable={true}
-          onClose={toggleMenu}
-          visible={showingMenu}
-          bodyStyle={{padding:"5px"}}
-          getContainer={() => container}
-        >
-        <Menu  style={{ lineHeight: "24px" }} selectable={false}
-            getPopupContainer={() => container} mode="vertical">
-            {loadMenus(menus,t)}
-        </Menu>
-        <FairyNoteSyncTimer style={{ lineHeight: "24px" ,padding: "10px"}}/>
-        </Drawer>
+            
+            <Drawer
+                title={`${t("extensionName")} - ${t("menu")}`}
+                placement="left"
+                style={{
+                    overflowX: "hidden",
+                    transitionProperty: "width",
+                    transitionDuration: "0.3s",
+                    transitionTimingFunction: "cubic-bezier(0.7, 0.3, 0.1, 1)",
+                }}
+                // maskStyle={{
+                //     position:"absolute"
+                // }}
+                closable={true}
+                onClose={toggleMenu}
+                visible={showingMenu}
+                bodyStyle={{padding:"5px"}}
+                getContainer={() => container}
+            >
+                <Menu  style={{ lineHeight: "24px" }} selectable={false}
+                    getPopupContainer={() => container} mode="vertical">
+                    {loadMenus(menus,t)}
+                </Menu>
+                <FairyNoteSyncTimer style={{ lineHeight: "24px" ,padding: "10px"}}/>
+            </Drawer>
 
         </div>
             )
@@ -125,10 +127,10 @@ const loadMenus = (m,t) => {
     let res = []
     m.map((x,i) => {
         if (x.children) {
-            res.push( <SubMenu key={i} title={x.name}>{loadMenus(x.children,t)}</SubMenu>)
+            res.push( <SubMenu key={"menu_" + x.name} title={x.name}>{loadMenus(x.children,t)}</SubMenu>)
         }  
         else {
-            res.push( <Menu.Item key={i} onClick={x.onClick}>
+            res.push( <Menu.Item key={"menu_" + x.name} onClick={x.onClick}>
                 <span>{x.icon}  {t(x.name)}</span></Menu.Item>) 
         }
         return x

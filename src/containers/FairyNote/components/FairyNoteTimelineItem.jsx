@@ -4,11 +4,11 @@ import MyTimePicker from './inputs/MyTimePicker'
 import MyComplete from './inputs/MyComplete'
 import MyTextArea from './inputs/MyTextArea'
 import { modes } from '../../../redux/modes';
-import {  Tooltip, Button, Timeline, Card } from 'antd';
+import { Tooltip, Button, Timeline, Card } from 'antd';
 import { connect } from 'react-redux'
 import { itemUpdate, itemFocus, itemDel, itemCopy,videoGoto, settingsUpdate } from '../../../redux/actions'
 import { withTranslation } from 'react-i18next';
-import { ClockCircleOutlined, CloseCircleFilled, CopyFilled, PlaySquareFilled } from '@ant-design/icons'
+import { ClockCircleOutlined, CloseCircleFilled, CopyFilled, PlaySquareFilled, UserOutlined } from '@ant-design/icons'
 
 @withTranslation()
 class FairyNoteTimelineItem extends Component {
@@ -102,25 +102,66 @@ class FairyNoteTimelineItem extends Component {
         container={container}
       ></MyTimePicker>
     )
+
+    const scenePattern = new RegExp("(.+)(\\d+)","g")
+    let translate_actor = (actor) => {
+      let actorshow = t(actor)
+      let m = actor.match(scenePattern)
+      let translate = y => {
+          let m1 = y.match("(.+)(\\d+)")
+          actorshow = t(m1[1])+m1[2]
+          return y
+      }
+      if (m) {
+          m.map(translate)
+      }
+      return actorshow
+    }
+
+    let translate_actor_back = (actor,prefixes) => {
+      let actorshow = actor
+      let m = actor.match(scenePattern)
+      let translate = y => {
+          let m1 = y.match("(.+)(\\d+)")
+          let prefix =m1[1]
+          for (var p in prefixes){
+            if( m1[1] === t(p)){
+              prefix = p
+              break
+            }
+          }
+          actorshow = prefix + m1[2]
+          return y
+      }
+      if (m) {
+          m.map(translate)
+      }
+      return actorshow
+    }
+    let options =  
+    [...new Set( [
+      ...actors,
+      ...modes[mode].getDefaultCandidates(),
+      ...recalls].map(x=>translate_actor(x)) )
+    ]
+
     let actor = (
       <MyComplete
         width="118px"
-        prefix="user"
+        prefix={<UserOutlined/>}
         placeholder={t("guest")}
-        value={item.actor}
-        onChange={value => itemUpdate({ index: index, item: { actor: value } })}
+        value={translate_actor(item.actor)}
+        onChange={value => itemUpdate({ index: index, 
+          item: { actor: translate_actor_back(value, modes[mode].prefixes) } })}
         onFocus={() => itemFocus({ index: index })}
-        dataSource={
-          [...new Set( [...actors,
-            ...modes[mode].getDefaultCandidates(),
-            ...recalls])]}
+        dataSource={options}
         container={container}
       ></MyComplete>
     )
     let comment = (
       <MyComplete
         width="160px"
-        prefix="user"
+        prefix={<UserOutlined/>}
         placeholder={t("comment")}
         value={item.comment}
         onChange={value => {

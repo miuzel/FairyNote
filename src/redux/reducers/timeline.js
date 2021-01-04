@@ -1,17 +1,14 @@
 /* global chrome */
 import * as types from '../actions/types'
-import { message } from 'antd';
 import { modes } from '../modes';
 import uuidv4 from 'uuid/v4';
 import { getCensoredText, getFullText, copyTextToClipboard, getVideoId } from '../../utils'
-import i18next from 'i18next';
 import csvstringify from 'csv-stringify/lib/browser'
 import csvparse from 'csv-parse/lib/sync'
 import moment from 'moment'
 import subsrt from 'subsrt'
 import LZString from 'lz-string'
 
-const t = i18next.t
 const initialState = []
 
 const getVideo = () => document.querySelector('video')
@@ -298,7 +295,7 @@ const saveState = (s, quiet) => {
     file[key] = LZString.compressToUTF16(JSON.stringify(compressed))
     chrome.storage.local.set(file, () => {
         if (!quiet) {
-            message.success(t("saveSuccess"));
+            console.log("Data save success");
         }
     })
 

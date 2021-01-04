@@ -12,6 +12,7 @@ import store from '../../redux/store'
 import { withTranslation } from 'react-i18next';
 import { Layout , message} from 'antd';
 import { timelineLoadAsync, settingsLoadAsync } from '../../redux/actions'
+import 'antd/dist/antd.css';
 
 const { Header, Footer, Content } = Layout
 // const parentDoc = document
