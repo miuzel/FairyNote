@@ -6,7 +6,7 @@ import MyTextArea from './inputs/MyTextArea'
 import { Button, Card, Popover, Tooltip } from 'antd'
 import { useTranslation } from 'react-i18next';
 import { itemFocus, itemDel, videoGoto, itemUpdate, itemAdd,settingsUpdate } from '../../../redux/actions'
-import { CaretDownFilled, DeleteFilled, DownSquareFilled } from '@ant-design/icons'
+import { CaretDownFilled, DeleteFilled, DownSquareFilled, UserOutlined } from '@ant-design/icons'
 var dragX = 0
 const FairyNoteMarkup = props => {
 
@@ -66,7 +66,7 @@ const FairyNoteMarkup = props => {
             // Start observing the target node for configured mutations
             observer.observe(targetNode, config);
         }
-    })
+    },[progressBar,videoGoto])
 
     let content = (item, index) => {
         let timepicker = (
@@ -80,12 +80,27 @@ const FairyNoteMarkup = props => {
             onFocus={() => itemFocus({ index: index })}
           ></MyTimePicker>
         )
+
+        let translate_actor = (actor) => {
+            let actorshow = t(actor)
+            let scenePattern = new RegExp("(.+)(\\d+)","g")
+            let m = item.actor.match(scenePattern)
+            if (m) {
+                m.map(y=>{
+                    let m1 = y.match("(.+)(\\d+)")
+                    actorshow = t(m1[1])+m1[2]
+                    return y
+                })
+            }
+            return actorshow
+          }
+
         let actor = (
             <MyComplete
             width="126px"
-            prefix="user"
+            prefix={<UserOutlined/>}
             placeholder={t("guest")}
-            value={item.actor}
+            value={translate_actor(item.actor)}
             onChange={value => itemUpdate({ index: index, item: { actor: value } })}
             onFocus={() => itemFocus({ index: index })}
             dataSource={[]}
@@ -94,7 +109,7 @@ const FairyNoteMarkup = props => {
         let comment = (
             <MyComplete
             width="160px"
-            prefix="user"
+            prefix={<UserOutlined/>}
             placeholder={t("comment")}
             value={item.comment}
             onChange={value => {

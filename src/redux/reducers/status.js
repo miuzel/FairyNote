@@ -8,7 +8,7 @@ const initialState = {
     showingText: false
 }
 
-export default (state = initialState, { type, payload }) => {
+const status = (state = initialState, { type, payload }) => {
     switch (type) {
 
         case types.TOGGLE_TEXT:
@@ -48,3 +48,6 @@ export default (state = initialState, { type, payload }) => {
             return state
     }
 }
+
+
+export default status

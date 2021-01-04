@@ -3,8 +3,7 @@ import * as types from '../actions/types'
 const initialState = {
     actors: [],
 }
-
-export default (state = initialState, { type, payload }) => {
+const data =  (state = initialState, { type, payload }) => {
     switch (type) {
 
         case types.DATA_UPDATE:
@@ -14,3 +13,5 @@ export default (state = initialState, { type, payload }) => {
             return state
     }
 }
+
+export default data
