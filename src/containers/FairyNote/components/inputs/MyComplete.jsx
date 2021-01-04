@@ -46,7 +46,7 @@ class MyComplete extends React.Component {
     const { dataSource } = this.state.candidates;
     return (
       <AutoComplete
-        dataSource={dataSource}
+        options={dataSource.map(x=>{return {value:x}})}
         style={{ width: this.props.width , marginRight: "10px"}}
         size="small"
         value={this.state.dirty ? this.state.value : this.props.value}

@@ -4,7 +4,7 @@ body {
     font-family: sans-serif;
 }
 
-#my-extension-root {
+#fairynote-two-root {
     visibility: visible;
     width: 550px;
     height: 100%;
@@ -19,11 +19,11 @@ body {
     transition: all 0.25s ease-in;
 }
 
-#my-extension-root.hide {
+#fairynote-two-root.hide {
     visibility: hidden;
 }
 
-#my-extension-root.show {
+#fairynote-two-root.show {
     right: 0px;
     display: block;
     opacity: 1;
@@ -31,23 +31,23 @@ body {
     transition: all 0.25s ease-out;
 }
 
-#my-extension-root iframe {
+#fairynote-two-root iframe {
     width: 100%;
     height: 100%;
     border: none;
 }
 
-#my-extension-frame {
+#fairynote-two-frame {
     width: 100%;
     height: 100%;
 }
 
-#my-extension-loading.show {
+#fairynote-two-loading.show {
     opacity: 1;
     transition: all 0.3s ease-in;
 }
 
-#my-extension-loading {
+#fairynote-two-loading {
     width: 100%;
     height: 100%;
     z-index: 4200;
@@ -58,7 +58,7 @@ body {
     transition: all 0.3s ease-in;
 }
 
-#my-extension-loading-spin {
+#fairynote-two-loading-spin {
     width: intrinsic;
     /* Safari/WebKit uses a non-standard name */
     width: -moz-max-content;
@@ -73,6 +73,10 @@ body {
     left: 0;
     right: 0;
     position: absolute;
+}
+
+.ant-drawer-left {
+    left: auto !important;
 }
 
 .ant-modal-mask {
