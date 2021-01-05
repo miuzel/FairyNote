@@ -19,9 +19,11 @@ export const MODE_UPDATE = 'MODE_UPDATE'
 export const SETTINGS_UPDATE = 'SETTINGS_UPDATE'
 
 export const DATA_UPDATE = 'DATA_UPDATE'
+export const SAVE_LIST = 'SAVE_LIST'
 
 export const TOGGLE_TEXT = 'TOGGLE_TEXT'
 export const TOGGLE_HELP = 'SHOW_HELP'
+export const TOGGLE_LIST = 'TOGGLE_LIST'
 export const TOGGLE_SETTINGS = 'SHOW_SETTINGS'
 export const TOGGLE_MENU = 'TOGGLE_MENU'
 

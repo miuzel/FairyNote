@@ -13,6 +13,7 @@ import { withTranslation } from 'react-i18next';
 import { Layout , message} from 'antd';
 import { timelineLoadAsync, settingsLoadAsync } from '../../redux/actions'
 import 'antd/dist/antd.css';
+import FairyNoteList from './components/FairyNoteList';
 
 const { Header, Footer, Content } = Layout
 // const parentDoc = document
@@ -21,9 +22,9 @@ const { Header, Footer, Content } = Layout
 class FairyNote extends Component {
     constructor(props){
         store.dispatch(settingsLoadAsync({ quiet: true }))
-        setTimeout(() => {
-            store.dispatch(timelineLoadAsync({ quiet: false }))
-        }, 0)
+        // setTimeout(() => {
+        //     store.dispatch(timelineLoadAsync({ quiet: false }))
+        // }, 0)
         super(props)
     }
     componentDidMount() {
@@ -37,8 +38,13 @@ class FairyNote extends Component {
         let videoPlayer = document.querySelector('video')
         if(videoPlayer){
             videoPlayer.onloadeddata = () => {
-                if(document.URL.match(/youtube\.com\/watch\?v=.+/)||
-                document.URL.match(/localhost/)  ){// test env
+                if(
+                    document.URL.match(/youtube\.com\/watch\?v=.+/) ||
+                    document.URL.match(/bilibili\.com\/video\/.+/) ||
+                    document.URL.match(/odysee\.com\/.+/) ||
+                    document.URL.match(/lbry.tv\/.+/) ||
+                    document.URL.match(/localhost/) // test env
+                  ){
                     console.log("url changed. Reload data.")
                     store.dispatch(timelineLoadAsync({ quiet: false }))
                 } else {
@@ -64,10 +70,12 @@ class FairyNote extends Component {
                     <Footer id="extensionfooter">
                         <FairyNoteFooter />
                     </Footer>
+                    {/* hidden parts */}
                     <div height="0px">
                         <FairyNoteSettings />
                         <FairyNoteText />
                         <FairyNoteHelp />
+                        <FairyNoteList />
                         <FairyNoteShortcuts toggle={toggle} />
                         {/* <FairyNoteShortcuts name="parent" container={parentDoc.body} toggle={toggle} /> */}
                     </div>

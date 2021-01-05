@@ -4,6 +4,7 @@ import {startRevealMagicWord,stopRevealMagicWord} from '../synctimer'
 const initialState = {
     mode: '',
     showingHelp: false,
+    showingList: false,
     showingSettings: false,
     showingText: false
 }
@@ -23,6 +24,12 @@ const status = (state = initialState, { type, payload }) => {
                 showingHelp: !state.showingHelp
             }
 
+        case types.TOGGLE_LIST:
+            return {
+                ...state,
+                showingList: !state.showingList
+            }
+    
         case types.TOGGLE_SETTINGS:
             return {
                 ...state,
