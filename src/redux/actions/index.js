@@ -136,8 +136,11 @@ export const settingsUpdate = actionCreatorCreator(types.SETTINGS_UPDATE)
 export const toggleSyncTimer = actionCreatorCreator(types.TOGGLE_SYNC_TIMER)
 
 export const dataUpdate = actionCreatorCreator(types.DATA_UPDATE)
+export const saveList = actionCreatorCreator(types.SAVE_LIST)
+
 export const toggleText = actionCreatorCreator(types.TOGGLE_TEXT)
 export const toggleHelp = actionCreatorCreator(types.TOGGLE_HELP)
+export const toggleList = actionCreatorCreator(types.TOGGLE_LIST)
 export const toggleSettings = actionCreatorCreator(types.TOGGLE_SETTINGS)
 export const toggleMenu = actionCreatorCreator(types.TOGGLE_MENU)
 

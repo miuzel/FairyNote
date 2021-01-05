@@ -85,6 +85,9 @@
     "setting":{
         "message": "设置"
     },
+    "list":{
+        "message": "记录"
+    },
     "file":{
         "message": "文件"
     },
