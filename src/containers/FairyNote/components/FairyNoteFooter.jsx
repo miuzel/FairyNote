@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { timelineSave } from "../../../redux/actions";
+import { saveList, timelineSave } from "../../../redux/actions";
 import { useTranslation } from 'react-i18next';
 
 
@@ -15,6 +15,7 @@ const FairyNoteFooter = props => {
       setSaving(1);
       setTimeout(()=> {
           timelineSave({ quiet: true })
+          saveList()
       },0);
     }
     const stopTimer = () => {
@@ -62,7 +63,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    timelineSave
+    timelineSave,saveList
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FairyNoteFooter)

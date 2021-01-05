@@ -9,13 +9,15 @@ const settings = (state = defaultSettings, { type, payload }) => {
     case types.SETTINGS_UPDATE:
         let file = {}
         file[key] = { ...state, ...payload }
-        chrome.storage.sync.set(file, () => {})
+        chrome.storage.sync.set(file, () => {
+            console.log("Settings saveSuccess");
+        })
         return { ...state, ...payload }
     case types.SAVE_SETTINGS:
         file = {}
         file[key] = state
         chrome.storage.sync.set(file, () => {
-            console.log("saveSuccess");
+            console.log("Settings saveSuccess");
         })
         return state
     case types.LOAD_SETTINGS:

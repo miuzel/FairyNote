@@ -7,6 +7,7 @@ let initialState = {
     settings: defaultSettings,
     status: {
         showingHelp: false,
+        showingList: false,
         showingSettings: false,
         showingText: false,
         showingMenu: false,
@@ -14,6 +15,7 @@ let initialState = {
     },
     data: {
         actors: [],
+        notelist: []
     },
     timeline: {
         mode: defaultSettings.defaultMode,

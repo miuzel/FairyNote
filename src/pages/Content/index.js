@@ -8,11 +8,9 @@ import FairyNote from '../../containers/FairyNote'
 import FairyNoteMarkups from '../../containers/FairyNote/FairyNoteMarkups'
 import Mousetrap from 'mousetrap'
 import 'mousetrap-global-bind'
-import { Spin ,message} from 'antd'
+import { Spin } from 'antd'
 import './content.styles.css'
 import LZString from 'lz-string'
-
-const { t } = i18n
 let initialized = false;
 
 LoadLocales(()=>{
@@ -57,16 +55,6 @@ LoadLocales(()=>{
 
   function init(onfinish) {
     if (!initialized) {
-      let videoPlayer = document.querySelector('video')
-      if(!videoPlayer || 
-        ! (
-          document.URL.match(/youtube\.com\/watch\?v=.+/) ||
-          document.URL.match(/localhost/)  // test env
-          )
-        ){
-        message.warn(t("cannotFindVideoID"))
-        return
-      }
       console.log("initializing")
       Mousetrap.unbind('ctrl+shift+g')
       Mousetrap.unbind('command+shift+g')
@@ -90,7 +78,6 @@ LoadLocales(()=>{
       }
       appFrame = document.createElement('div');
       appFrame.id = "fairynote-two-frame";
-      const markupContainer = document.querySelector(".ytp-chrome-bottom")
       markups = document.createElement('div');
       markups.id = "fairynote-two-markups";
       app.appendChild(appFrame);
@@ -125,8 +112,12 @@ LoadLocales(()=>{
         }
         ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}
           onLoad={() => hideandDelete(loading, 300)} />, appFrame);
-        markupContainer.appendChild(markups);
-        ReactDOM.render(<FairyNoteMarkups />, markups);
+        //load progress bar markup. Only support youtube by now.
+        const markupContainer = document.querySelector(".ytp-chrome-bottom") 
+        if (markupContainer) { 
+          markupContainer.appendChild(markups); 
+          ReactDOM.render(<FairyNoteMarkups />, markups);
+        }
         initialized = true
         console.log("initialized")
         if(onfinish){

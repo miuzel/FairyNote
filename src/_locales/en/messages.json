@@ -85,6 +85,9 @@
     "file":{
         "message": "FILE"
     },
+    "list":{
+        "message": "LIST"
+    },
     "save":{
         "message": "SAVE"
     },

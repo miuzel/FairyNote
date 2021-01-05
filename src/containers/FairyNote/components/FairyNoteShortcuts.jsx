@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Mousetrap from 'mousetrap'
 import 'mousetrap-global-bind'
-import { textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel,itemBlur } from '../../../redux/actions';
+import { textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel,itemBlur, saveList } from '../../../redux/actions';
 
 
 export const bindShortcuts = (props) => {
@@ -101,7 +101,10 @@ const getShortcuts = ({
         {
             name: "save",
             key: "Command/Ctrl + Shift + S",
-            action: () => timelineSave()
+            action: () => {
+                timelineSave()
+                saveList()
+            }
         },
         {
             name: "dupCard",
@@ -144,7 +147,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel, itemBlur
+    saveList,textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel, itemBlur
 }
 
 export const shortcuts = getShortcuts(mapDispatchToProps)
