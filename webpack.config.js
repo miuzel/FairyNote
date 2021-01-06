@@ -37,9 +37,9 @@ var options = {
   mode: process.env.NODE_ENV || 'development',
   target: "web",
   entry: {
-    newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.jsx'),
-    options: path.join(__dirname, 'src', 'pages', 'Options', 'index.tsx'),
-    popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
+    // newtab: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.jsx'),
+    // options: path.join(__dirname, 'src', 'pages', 'Options', 'index.tsx'),
+    // popup: path.join(__dirname, 'src', 'pages', 'Popup', 'index.jsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.js'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.js'),
   },
@@ -53,6 +53,14 @@ var options = {
   },
   module: {
     rules: [
+      {
+        test: /FairyNoteFooter.jsx$/,
+        loader: 'string-replace-loader',
+        options: {
+          search: '--VERSION--',
+          replace: process.env.npm_package_version,
+        }
+      },
       {
         // look for .css or .scss files
         test: /\.(css|scss)$/,
@@ -129,13 +137,15 @@ var options = {
           to: path.join(__dirname, 'build'),
           force: true,
           transform: function (content, path) {
+            let manifest = {
+              description: process.env.npm_package_description,
+              version: process.env.npm_package_version,
+              ...JSON.parse(content.toString()),
+            }
+            //delete manifest.browser_specific_settings
             // generates the manifest file using the package.json informations
             return Buffer.from(
-              JSON.stringify({
-                description: process.env.npm_package_description,
-                version: process.env.npm_package_version,
-                ...JSON.parse(content.toString()),
-              })
+              JSON.stringify(manifest)
             );
           },
         },
@@ -145,6 +155,14 @@ var options = {
       patterns: [
         {
           from: 'src/pages/Content/content.styles.css',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },{
+          from: 'src/pages/Content/antd.min.css',
+          to: path.join(__dirname, 'build'),
+          force: true,
+        },{
+          from: 'src/containers/FairyNote/fairynote.css',
           to: path.join(__dirname, 'build'),
           force: true,
         },
@@ -168,24 +186,24 @@ var options = {
         },
       ],
     }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.html'),
-      filename: 'newtab.html',
-      chunks: ['newtab'],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'pages', 'Options', 'index.html'),
-      filename: 'options.html',
-      chunks: ['options'],
-      cache: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'pages', 'Popup', 'index.html'),
-      filename: 'popup.html',
-      chunks: ['popup'],
-      cache: false,
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'pages', 'Newtab', 'index.html'),
+    //   filename: 'newtab.html',
+    //   chunks: ['newtab'],
+    //   cache: false,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'pages', 'Options', 'index.html'),
+    //   filename: 'options.html',
+    //   chunks: ['options'],
+    //   cache: false,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, 'src', 'pages', 'Popup', 'index.html'),
+    //   filename: 'popup.html',
+    //   chunks: ['popup'],
+    //   cache: false,
+    // }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'pages', 'Background', 'index.html' ),
       filename: 'background.html',

@@ -28,9 +28,7 @@ const FairyNoteSettings = ({ visible, toggleSettings,saveSettings }) => {
             </div>
             }
             okText={t("confirm")}
-            cancelButtonProps={{
-                style: {display:"none"}
-            }}
+            cancelButtonProps={{ hidden: true }}
             cancelText={t("cancel")}
             width="700px"
             key="modal-setting">

@@ -1,4 +1,4 @@
-/* global chrome */
+
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import "./fairynote.css";
@@ -36,23 +36,17 @@ class FairyNote extends Component {
     }
     bindOnload = () => {
         const { t } = this.props;
-        let videoPlayer = document.querySelector('video')
-        if(videoPlayer){
-            videoPlayer.onloadeddata = () => {
-                if(
-                    document.URL.match(/youtube\.com\/watch\?v=.+/) ||
-                    document.URL.match(/bilibili\.com\/video\/.+/) ||
-                    document.URL.match(/odysee\.com\/.+/) ||
-                    document.URL.match(/lbry.tv\/.+/) ||
-                    document.URL.match(/localhost/) // test env
-                  ){
-                    console.log("url changed. Reload data.")
-                    store.dispatch(timelineLoadAsync({ quiet: false }))
-                } else {
-                    message.warn(t("cannotFindVideoID"))
-                }
-            }
+        if(
+            document.URL.match(/youtube\.com\/watch\?v=.+/) ||
+            document.URL.match(/bilibili\.com\/video\/.+/) ||
+            document.URL.match(/odysee\.com\/.+/) ||
+            document.URL.match(/lbry.tv\/.+/) ||
+            document.URL.match(/localhost/) // test env
+        ){
+            console.log("url changed. Reload data.")
+            store.dispatch(timelineLoadAsync({ quiet: false }))
         } else {
+            console.log("no video id found on " + document.URL)
             message.warn(t("cannotFindVideoID"))
         }
     }
@@ -60,30 +54,30 @@ class FairyNote extends Component {
     render() {
         const { toggle ,app} = this.props
         return (
-            <Provider store={store}>
-                <div className="fairynote-two">
-                    <Layout id="extensionlayout">
-                        <Header id="extensionheader">
-                            <FairyNoteHeader container={app} />
-                        </Header>
-                        <Content id="extensioncontent">
-                            <FairyNoteTimeline container={app} />
-                        </Content>
-                        <Footer id="extensionfooter">
-                            <FairyNoteFooter />
-                        </Footer>
-                        {/* hidden parts */}
-                        <div height="0px">
-                            <FairyNoteSettings />
-                            <FairyNoteText />
-                            <FairyNoteHelp />
-                            <FairyNoteList />
-                            <FairyNoteShortcuts toggle={toggle} />
-                            {/* <FairyNoteShortcuts name="parent" container={parentDoc.body} toggle={toggle} /> */}
-                        </div>
-                    </Layout>
-                </div>
-            </Provider>
+             <Provider store={store}>
+                    <div className="fairynote-two">
+                        <Layout id="extensionlayout">
+                            <Header id="extensionheader">
+                                <FairyNoteHeader container={app} />
+                            </Header>
+                            <Content id="extensioncontent">
+                                <FairyNoteTimeline container={app} />
+                            </Content>
+                            <Footer id="extensionfooter">
+                                <FairyNoteFooter />
+                            </Footer>
+                            {/* hidden parts */}
+                            <div height="0px">
+                                <FairyNoteSettings key="FairyNoteSettings"/>
+                                <FairyNoteText key="FairyNoteText"/>
+                                <FairyNoteHelp key="FairyNoteHelp"/>
+                                <FairyNoteList key="FairyNoteList"/>
+                                <FairyNoteShortcuts key="FairyNoteShortcuts" toggle={toggle} />
+                                <FairyNoteShortcuts key="FairyNoteShortcuts_frame" target={app} toggle={toggle} />
+                            </div>
+                        </Layout>
+                    </div>
+                </Provider>
         )
     }
 }

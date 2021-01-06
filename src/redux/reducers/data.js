@@ -13,8 +13,13 @@ const data =  (state = initialState, { type, payload }) => {
             return { ...state, ...payload }
         case types.SAVE_LIST:
             let saveKey = "FairyNote#DataSync"
+            let nextState = state
             let file = {}
             let key = getVideoId()
+            if (key === ""){
+                console.log("no video id found on " + document.URL)
+                return nextState
+            }
             let metadata = {
                 site: document.domain,
                 title: document.title,
@@ -22,7 +27,6 @@ const data =  (state = initialState, { type, payload }) => {
                 key: key,
                 update: Date.now()
             }
-            let nextState = state
             if(!nextState.notelist[document.domain]){
                 nextState.notelist[document.domain] = {}
             }

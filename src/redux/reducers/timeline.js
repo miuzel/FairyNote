@@ -275,6 +275,7 @@ const saveState = (s, quiet) => {
     let key = getVideoId()
     let file = {}
     if (key === ""){
+        console.log("no video id found on " + document.URL)
         return
     }
     let compressed = {
