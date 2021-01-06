@@ -14,6 +14,7 @@ const FairyNoteText = ({ visible, toggleText,text ,censoredWords}) => {
         <Modal
             visible={visible}
             onOk={toggleText}
+            cancelButtonProps={{ hidden: true }}
             onCancel={toggleText}
             title={<div>
                 <span>{t("outputText")}</span>

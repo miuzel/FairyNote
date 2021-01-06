@@ -33,6 +33,7 @@ const FairyNoteHelp = ({ visible, toggleHelp }) => {
     return (
         <Modal
             visible={visible}
+            cancelButtonProps={{ hidden: true }}
             onOk={toggleHelp}
             onCancel={toggleHelp}
             title={t("help")}

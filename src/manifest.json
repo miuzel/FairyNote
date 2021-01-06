@@ -2,13 +2,11 @@
   "name": "__MSG_extensionNameLong__",
   "short_name": "FairyNote2",
   "description": "__MSG_extensionDescription__",
-  "options_page": "options.html",
   "background": {
     "scripts": ["background.bundle.js"]
   },
   "default_locale": "zh_CN",
   "permissions": [ "tabs", "storage","unlimitedStorage" ],
-
   "page_action": {
     "default_title": "__MSG_extensionTooltip__",
     "default_icon": {
@@ -27,10 +25,10 @@
   "content_scripts": [{
     "matches": [ "*://www.youtube.com/*","*://*.bilibili.com/*" ,"*://odysee.com/*" ,"*://lbry.tv/*"  ],
     "js": ["contentScript.bundle.js"],
-    "css": ["content.styles.css"]
+    "css": ["content.styles.css","antd.min.css","fairynote.css"]
   }],
   "web_accessible_resources": [
-    "content.styles.css"
+    "content.styles.css","antd.min.css","fairynote.css"
   ],
   "browser_specific_settings": {
     "gecko": {

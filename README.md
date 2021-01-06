@@ -1,147 +1,147 @@
-<img src="src/assets/img/icon-128.png" width="64"/>
+# FairyNote
 
-# Chrome Extension Boilerplate with React 17 and Webpack 5
+Boilerplate is from https://github.com/satendra02/react-chrome-extension.
 
-[![npm](https://img.shields.io/npm/v/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
-[![npm-download](https://img.shields.io/npm/dw/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
-[![npm](https://img.shields.io/npm/dm/chrome-extension-boilerplate-react)](https://www.npmjs.com/package/chrome-extension-boilerplate-react)
+## Description
 
-[![dependencies Status](https://david-dm.org/lxieyang/chrome-extension-boilerplate-react/status.svg)](https://david-dm.org/lxieyang/chrome-extension-boilerplate-react)
-[![devDependencies Status](https://david-dm.org/lxieyang/chrome-extension-boilerplate-react/dev-status.svg)](https://david-dm.org/lxieyang/chrome-extension-boilerplate-react?type=dev)
+This is a chrome extension for those need to do manually indexing and adding outlines for youtube live streams when the stream is running.
 
-## Announcements
+## License
 
-- **_Recently updated from React ~~16~~ to 17 and Webpack ~~4~~ to 5!_**
-- **_Recently added [TypeScript](https://www.typescriptlang.org/) Support!_**
+The repo is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-## Features
+## FairyNote 2
 
-This is a basic Chrome Extensions boilerplate to help you write modular and modern Javascript code, load CSS easily and [automatic reload the browser on code changes](https://webpack.github.io/docs/webpack-dev-server.html#automatic-refresh).
+### Change 2.8.0
 
-This boilerplate is updated with:
+- Experimentally Support more websites
+  - BiliBili
+  - Odysee
+  - LBRY.tv
+- New Feature: Open the list in the menu and see what you are working on from now on.
+- Upgrade to Webpack 5 and AntD 4.10
+- Minor refactor
 
-- [React 17](https://reactjs.org)
-- [Webpack 5](https://webpack.js.org/)
-- [React Hot Loader](https://github.com/gaearon/react-hot-loader)
-- [eslint-config-react-app](https://www.npmjs.com/package/eslint-config-react-app)
-- [Prettier](https://prettier.io/)
-- [TypeScript](https://www.typescriptlang.org/)
+### Change 2.7.5
 
-This boilerplate is heavily inspired by and adapted from [https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate](https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate), with additional support for React 17 features and Webpack 5.
+- User can now close FairyNote with extension icon on youtube pages other than video page.
+- Minor bug fix: limit timestamps to prevent negative values.
 
-Please open up an issue to nudge me to keep the npm packages up-to-date. FYI, it takes time to make different packages with different versions work together nicely.
+### Change 2.7.4
 
-## Installing and Running
+- Automatically add first section which is needed for youtube to activate the chapter feature.
 
-### Procedures:
+### Change 2.7.3
 
-1. Check if your [Node.js](https://nodejs.org/) version is >= **14**.
-2. Clone this repository.
-3. Change the package's `name`, `description`, and `repository` fields in `package.json`.
-4. Change the name of your extension on `src/manifest.json`.
-5. Run `npm install` to install the dependencies.
-6. Run `npm start`
-7. Load your extension on Chrome following:
-   1. Access `chrome://extensions/`
-   2. Check `Developer mode`
-   3. Click on `Load unpacked extension`
-   4. Select the `build` folder.
-8. Happy hacking.
+- Adapt Youtube Chapter feature.
+- Upgrade Antd Components
+- Change toggle shortcut to Ctrl+Shift+G
 
-## Structure
+### Change 2.7.2
 
-All your extension's code must be placed in the `src` folder.
+- Minor fix.
 
-The boilerplate is already prepared to have a popup, an options page, a background page, and a new tab page (which replaces the new tab page of your browser). But feel free to customize these.
+### Change 2.7.1
 
-## TypeScript
+- Minor fix. Sometimes app crashes when deleting items using keyboard shortcut.
 
-This boilerplate now supports TypeScript! The `Options` Page is implemented using TypeScript. Please refer to `src/pages/Options/` for example usages.
+### Change 2.7.0
 
-## Webpack auto-reload and HRM
+- Use local storage instead of account syncronized storage which is more limited in size.
+- Improve auto saving machanism and make save data smaller
+- TODO: save data management facilities.
 
-To make your workflow much more efficient this boilerplate uses the [webpack server](https://webpack.github.io/docs/webpack-dev-server.html) to development (started with `npm start`) with auto reload feature that reloads the browser automatically every time that you save some file in your editor.
+### Change 2.6.3
 
-You can run the dev mode on other port if you want. Just specify the env var `port` like this:
+- Optimized saving pattern, now FairyNote do less saving attempts. This may help when you have problem syncing the data across devices.
+- No longer select full text when a card is selected.
 
-```
-$ PORT=6002 npm run start
-```
+### Change 2.6.2
 
-## Content Scripts
+- Fixed sorting in speech mode.
 
-Although this boilerplate uses the webpack dev server, it's also prepared to write all your bundles files on the disk at every code change, so you can point, on your extension manifest, to your bundles that you want to use as [content scripts](https://developer.chrome.com/extensions/content_scripts), but you need to exclude these entry points from hot reloading [(why?)](https://github.com/samuelsimoes/chrome-extension-webpack-boilerplate/issues/4#issuecomment-261788690). To do so you need to expose which entry points are content scripts on the `webpack.config.js` using the `chromeExtensionBoilerplate -> notHotReload` config. Look the example below.
+### Change 2.6.1
 
-Let's say that you want use the `myContentScript` entry point as content script, so on your `webpack.config.js` you will configure the entry point and exclude it from hot reloading, like this:
+- Fixed encoding of csv and srt files.
 
-```js
-{
-  …
-  entry: {
-    myContentScript: "./src/js/myContentScript.js"
-  },
-  chromeExtensionBoilerplate: {
-    notHotReload: ["myContentScript"]
-  }
-  …
-}
-```
+### Change 2.6.0
 
-and on your `src/manifest.json`:
+- Added a new feature to replace special words in the output with visually recognizable forms.
+
+### Change 2.5.0
+
+- Added a new mode "Number" which should fit most videos
+- Added a new export mode. Now you can export srt format subtitle out of the timeline. Which should be useful if you are familiar with the YouTube subtitle maker.
+
+### Change 2.4.2
+
+- Bug Fixes
+
+### Change 2.4.0
+
+- Add progress bar tool. Now you can view and manage the text blocks on the youtube progress bar.
+
+### Change 2.3.1
+
+- Fix firefox timepicker issue and some minor styling issues. The new time picker respond to keyboard Up/Down or Shift+Up/Shift+Down to adjust the time.
+
+### Change 2.3.0
+
+- Port to firefox.
+
+The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://addons.mozilla.org/en-US/firefox/addon/shortkeys/ and import the following configuration to disable these built-in shortcuts on youtube.com
 
 ```json
-{
-  "content_scripts": [
-    {
-      "matches": ["https://www.google.com/*"],
-      "js": ["myContentScript.bundle.js"]
-    }
-  ]
-}
+[
+    {"key":"ctrl+shift+a","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"exported":true,"sitesArray":["*youtube.com*"],"activeInInputs":true},
+    {"key":"ctrl+shift+x","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"exported":true,"sitesArray":["*youtube.com*"],"activeInInputs":true},
+    {"key":"ctrl+shift+h","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"activeInInputs":true,"exported":true,"sitesArray":["*youtube.com*"]},
+    {"key":"ctrl+shift+k","action":"disable","blacklist":"whitelist","sites":"*youtube.com*","open":false,"activeInInputs":true,"exported":true,"sitesArray":["*youtube.com*"]}
+]
 ```
 
-## Intelligent Code Completion
+### Change 2.2.0
 
-Thanks to [@hudidit](https://github.com/lxieyang/chrome-extension-boilerplate-react/issues/4)'s kind suggestions, this boilerplate supports chrome-specific intelligent code completion using [@types/chrome](https://www.npmjs.com/package/@types/chrome). For example:
+- New menu items FILE > EXPORT/IMPORT. This will be useful if you are coping data among videos or you want to edit the data in VSCode, Excel, Numbers or whatever editor you like.
 
-![intellisense](https://lxieyang.github.io/static/chrome-extension-boilerplate-dev-intellisense-ed9e7c485d3eaf66417e5da4748e2c97.png)
+### Change 2.1.0
 
-## Packing
+- Add a set of new shortcuts to adjust time against latency issues. Select a timeline item, then use Ctrl/Command + Shift + , /  Ctrl/Command + Shift + . to add time latency deltas. The delta will be applied on all items following the current one. Enjoy the update. 
 
-After the development of your extension run the command
+### Change 2.0.3
 
+- Fix Command+Shift+A cannot focus textarea in Chrome 77
+
+### Changes 2.0.2
+
+- New Feature: Magic LIVE Sync.
+  
+  When one is broadcasting while his audiences are watching the same video and talking in a online chatroom. Pass the magic word to your friends they can sync the progress of the video as is you are watching together side by side
+
+### Changes 1.4.3 -> 2.0.1
+
+- GUI Improvement
+
+- Add multiple modes with different "new card" and "card sorting" behaviors.
+
+- Add Settings Panel
+
+- Auto save enabled as default, can be turned off
+
+- Auto complete of the comment field can be saved for some frequently used phrase. You can modify auto complete candidates data in settings.
+
+- You can now control whether to follow video timestamp when focus on a card
+
+- You can change the locale of the extension in settings now. The locale no longer follows your browser.
+
+p.s. Please read the help page and remember those keyboard shortcuts which can boost your recording speed significantly
+
+
+### How to build
+
+On Linux / node v10.16.0 / yarn v1.17.3
+
+```bash
+yarn install
+yarn build
 ```
-$ NODE_ENV=production npm run build
-```
-
-Now, the content of `build` folder will be the extension ready to be submitted to the Chrome Web Store. Just take a look at the [official guide](https://developer.chrome.com/webstore/publish) to more infos about publishing.
-
-## Secrets
-
-If you are developing an extension that talks with some API you probably are using different keys for testing and production. Is a good practice you not commit your secret keys and expose to anyone that have access to the repository.
-
-To this task this boilerplate import the file `./secrets.<THE-NODE_ENV>.js` on your modules through the module named as `secrets`, so you can do things like this:
-
-_./secrets.development.js_
-
-```js
-export default { key: '123' };
-```
-
-_./src/popup.js_
-
-```js
-import secrets from 'secrets';
-ApiCall({ key: secrets.key });
-```
-
-:point_right: The files with name `secrets.*.js` already are ignored on the repository.
-
-## Resources:
-
-- [Webpack documentation](https://webpack.js.org/concepts/)
-- [Chrome Extension documentation](https://developer.chrome.com/extensions/getstarted)
-
----
-
-Michael Xieyang Liu | [Website](https://lxieyang.github.io)

@@ -11,8 +11,8 @@ import 'mousetrap-global-bind'
 import { Spin } from 'antd'
 import './content.styles.css'
 import LZString from 'lz-string'
+import Frame , {FrameContextConsumer} from 'react-frame-component';
 let initialized = false;
-
 LoadLocales(()=>{
   console.log("Loading FairyNote Extension.")
   const app = document.createElement('div')
@@ -48,20 +48,16 @@ LoadLocales(()=>{
     }, 250)
   }
 
-  function hideandDelete(element, timeout) {
-    element.classList.remove("show")
-    setTimeout(() => element.remove(), timeout)
-  }
-
   function init(onfinish) {
     if (!initialized) {
       console.log("initializing")
       Mousetrap.unbind('ctrl+shift+g')
       Mousetrap.unbind('command+shift+g')
-      const loading = document.createElement('div');
-      loading.id = "fairynote-two-loading";
-      loading.classList.add("show");
-      app.appendChild(loading);
+      const loading = document.createElement('div')
+      loading.id = "fairynote-two-loading"
+      loading.classList.add("show")
+      app.appendChild(loading)
+
       ReactDOM.render((
         <div id="fairynote-two-loading-spin">
           <Spin size="large" tip="LOADING...">
@@ -78,21 +74,52 @@ LoadLocales(()=>{
       }
       appFrame = document.createElement('div');
       appFrame.id = "fairynote-two-frame";
+
+      appFrame.style.visibility="hidden"
+      function hideandDelete(element, timeout) {
+        appFrame.style.visibility="visible"
+        element.classList.remove("show")
+        setTimeout(() => element.remove(), timeout)
+      }
+
       markups = document.createElement('div');
       markups.id = "fairynote-two-markups";
       app.appendChild(appFrame);
       document.body.appendChild(app);
-      chrome.storage.onChanged.addListener(function(changes, namespace) {
-        for (var key in changes) {
-          var storageChange = changes[key];
-          console.log('Storage key "%s" in namespace "%s" changed. ' +
-                      'Old value was "%s", new value is "%s".',
-                      key,
-                      namespace,
-                      storageChange.oldValue,
-                      storageChange.newValue);
+      // chrome.storage.onChanged.addListener(function(changes, namespace) {
+      //   for (var key in changes) {
+      //     var storageChange = changes[key];
+      //     console.log('Storage key "%s" in namespace "%s" changed. ' +
+      //                 'Old value was "%s", new value is "%s".',
+      //                 key,
+      //                 namespace,
+      //                 storageChange.oldValue,
+      //                 storageChange.newValue);
+      //   }
+      // });
+
+
+      class Main extends React.Component {
+        render() {
+            return (
+                <Frame key="appframe" head={[<link   key="link1" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./content.styles.css")} ></link>,
+                <link  key="link2" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./antd.min.css")} ></link>,
+                <link  key="link3" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./fairynote.css")} ></link>]}> 
+                   <FrameContextConsumer key="appframec">
+                   {
+                      ({document, window}) => {
+                        return <FairyNote key="FairyNote" chrome={chrome} app={document.body} toggle={toggle.bind(null, app)}
+                        onLoad={() => {
+                          hideandDelete(loading, 1300)
+                        }} />
+                      }
+                    }
+                    </FrameContextConsumer>
+                </Frame>
+            )
         }
-      });
+     }
+    
       const key = "FairyNote#Settings"
       chrome.storage.sync.get(key, function (result) {
         if (result) {
@@ -120,8 +147,9 @@ LoadLocales(()=>{
             chrome.storage.sync.remove(keys, ()=>{console.log("removed synced keys")})
           }
         }
-        ReactDOM.render(<FairyNote app={appFrame} toggle={toggle.bind(null, app)}
-          onLoad={() => hideandDelete(loading, 300)} />, appFrame);
+        ReactDOM.render(
+          <Main  />
+        , appFrame);
         //load progress bar markup. Only support youtube by now.
         const markupContainer = document.querySelector(".ytp-chrome-bottom") 
         if (markupContainer) { 

@@ -4,10 +4,7 @@ import { message } from 'antd'
 import uuidv4 from 'uuid/v4';
 import { getVideoId } from '../../utils';
 import defaultSettings from '../../defaultSettings'
-import i18next from 'i18next'
-
 import LZString from 'lz-string'
-const { t } = i18next
 const actionCreatorCreator = actionType => payload => ({
   type: actionType,
   payload
@@ -69,7 +66,7 @@ export const settingsLoadAsync = (payload) => dispatch => {
       savedState = defaultSettings
     }
     if (!payload.quiet) {
-      message.success(t("loadSuccess"));
+      message.success("Successfully Loaded");
     }
     dispatch(loadSettings(savedState))
   })
@@ -79,6 +76,7 @@ export const settingsLoadAsync = (payload) => dispatch => {
 export const timelineLoadAsync = (payload) => (dispatch, getState) => {
   let key = getVideoId()
   if (key === ""){
+      console.log("no video id found on " + document.URL)
       return
   }
   chrome.storage.local.get([key], function (result) {
@@ -97,7 +95,7 @@ export const timelineLoadAsync = (payload) => (dispatch, getState) => {
       };
     }
     if (!payload.quiet) {
-      message.success("loadSuccess");
+      message.success("Successfully Loaded");
     }
     dispatch(timelineLoaded(savedState))
   })
@@ -113,7 +111,7 @@ export const timelineImportAsync = (payload) => dispatch => {
       reader.onload = function (e) {
         let data = e.target.result
         if (!payload.quiet){
-          message.success(t("importSuccess"));
+          message.success("Successfully Imported");
         }
         dispatch(timelineImport({
           csvdata: data
