@@ -26,7 +26,7 @@ const FairyNoteFooter = props => {
     if (autoSave) {
       if (!autoSaveTimer) {
         console.log("set up autosave");
-        setAutoSaveTimer(setInterval(timer, 1000));
+        setAutoSaveTimer(setInterval(timer, 5000));
       }
     } else {
       if (autoSaveTimer) {

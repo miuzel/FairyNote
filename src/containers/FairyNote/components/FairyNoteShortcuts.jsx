@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { connect } from 'react-redux'
 import Mousetrap from 'mousetrap'
@@ -5,7 +6,7 @@ import 'mousetrap-global-bind'
 import { textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel,itemBlur, saveList } from '../../../redux/actions';
 
 
-export const bindShortcuts = (props) => {
+export const bindShortcuts = (props, target_el) => {
     console.log("Registering keyboard shortcuts.")
     let bindkey = (key, fn) => {
         let keysToBind = [""]
@@ -19,8 +20,12 @@ export const bindShortcuts = (props) => {
         }
         keysToBind = keysToBind.map(x => x.substring(1))
         keysToBind.map(k => {
-            Mousetrap.unbind(k)
-            Mousetrap.bindGlobal(k, (e) => {
+            let target = document 
+            if(target_el){
+                target = target_el
+            }
+            Mousetrap(target).unbind(k)
+            Mousetrap(target).bindGlobal(k, (e) => {
                 if (e.preventDefault) {
                     e.preventDefault()
                 } 
@@ -39,7 +44,8 @@ export const bindShortcuts = (props) => {
 }
 
 const FairyNoteShortcuts = (props) => {
-    bindShortcuts(props)
+    const {target} = props
+    bindShortcuts(props,target)
     return (
         <div style={{ height: "0px" }}>
         </div>

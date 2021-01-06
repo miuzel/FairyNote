@@ -1,8 +1,14 @@
+
+/* 
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-}
+} */
+/* src/content.css */
+
+/* @import '~antd/dist/antd.css'; */
+
 
 #fairynote-two-root {
     visibility: visible;
@@ -121,4 +127,70 @@ user-select: none;
 /* Required to make elements draggable in old WebKit */
 -khtml-user-drag: element;
 -webkit-user-drag: element;
+}
+
+
+[dir] .ant-modal {
+    margin: 0 auto;
+    padding-bottom: 24px;
+}
+
+[dir] .ant-modal-header {
+    padding: 16px 24px;
+}
+
+[dir] .ant-modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 2px 2px 0 0;
+}
+[dir]  .ant-modal-body {
+    padding: 24px;
+}
+[dir]   .ant-modal-footer {
+    padding: 10px 16px;
+    border-top: 1px solid #f0f0f0;
+    border-radius: 0 0 2px 2px;
+}
+[dir]  .ant-modal-footer button + button {
+    margin-bottom: 0;
+    margin-left: 8px;
+}
+[dir] .ant-btn > .anticon + span,
+[dir] .ant-btn > span + .anticon {
+  margin-left: 8px;
+}
+
+[dir] .ant-btn {
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 4px 15px;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.85);
+    background: #fff;
+    border-color: #d9d9d9;
+  }
+
+[dir]  .ant-btn-primary {
+    color: #fff;
+    background: #1890ff;
+    border-color: #1890ff;
+}
+
+
+[dir]  .ant-message-notice {
+    padding: 8px;
+}
+[dir] .ant-message-notice-content {
+    padding: 10px 16px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+[dir] .ant-message .anticon {
+    margin-right: 8px;
+}
+[dir] .ant-message-rtl .anticon {
+    margin-right: 0;
+    margin-left: 8px;
 }
