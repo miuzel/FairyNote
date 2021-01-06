@@ -1,3 +1,4 @@
+/* global chrome */
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import "./fairynote.css";
@@ -11,10 +12,9 @@ import FairyNoteShortcuts from './components/FairyNoteShortcuts';
 import store from '../../redux/store'
 import { withTranslation } from 'react-i18next';
 import { Layout , message} from 'antd';
-import { timelineLoadAsync, settingsLoadAsync } from '../../redux/actions'
+import { timelineLoadAsync, settingsLoadAsync, dataLoadAsync } from '../../redux/actions'
 import 'antd/dist/antd.css';
 import FairyNoteList from './components/FairyNoteList';
-
 const { Header, Footer, Content } = Layout
 // const parentDoc = document
 
@@ -22,6 +22,7 @@ const { Header, Footer, Content } = Layout
 class FairyNote extends Component {
     constructor(props){
         store.dispatch(settingsLoadAsync({ quiet: true }))
+        store.dispatch(dataLoadAsync({quiet:true}))
         // setTimeout(() => {
         //     store.dispatch(timelineLoadAsync({ quiet: false }))
         // }, 0)
@@ -60,26 +61,28 @@ class FairyNote extends Component {
         const { toggle ,app} = this.props
         return (
             <Provider store={store}>
-                <Layout id="extensionlayout">
-                    <Header id="extensionheader">
-                        <FairyNoteHeader container={app} />
-                    </Header>
-                    <Content id="extensioncontent">
-                        <FairyNoteTimeline container={app} />
-                    </Content>
-                    <Footer id="extensionfooter">
-                        <FairyNoteFooter />
-                    </Footer>
-                    {/* hidden parts */}
-                    <div height="0px">
-                        <FairyNoteSettings />
-                        <FairyNoteText />
-                        <FairyNoteHelp />
-                        <FairyNoteList />
-                        <FairyNoteShortcuts toggle={toggle} />
-                        {/* <FairyNoteShortcuts name="parent" container={parentDoc.body} toggle={toggle} /> */}
-                    </div>
-                </Layout>
+                <div className="fairynote-two">
+                    <Layout id="extensionlayout">
+                        <Header id="extensionheader">
+                            <FairyNoteHeader container={app} />
+                        </Header>
+                        <Content id="extensioncontent">
+                            <FairyNoteTimeline container={app} />
+                        </Content>
+                        <Footer id="extensionfooter">
+                            <FairyNoteFooter />
+                        </Footer>
+                        {/* hidden parts */}
+                        <div height="0px">
+                            <FairyNoteSettings />
+                            <FairyNoteText />
+                            <FairyNoteHelp />
+                            <FairyNoteList />
+                            <FairyNoteShortcuts toggle={toggle} />
+                            {/* <FairyNoteShortcuts name="parent" container={parentDoc.body} toggle={toggle} /> */}
+                        </div>
+                    </Layout>
+                </div>
             </Provider>
         )
     }
