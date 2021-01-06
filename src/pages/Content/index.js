@@ -82,7 +82,17 @@ LoadLocales(()=>{
       markups.id = "fairynote-two-markups";
       app.appendChild(appFrame);
       document.body.appendChild(app);
-
+      chrome.storage.onChanged.addListener(function(changes, namespace) {
+        for (var key in changes) {
+          var storageChange = changes[key];
+          console.log('Storage key "%s" in namespace "%s" changed. ' +
+                      'Old value was "%s", new value is "%s".',
+                      key,
+                      namespace,
+                      storageChange.oldValue,
+                      storageChange.newValue);
+        }
+      });
       const key = "FairyNote#Settings"
       chrome.storage.sync.get(key, function (result) {
         if (result) {
