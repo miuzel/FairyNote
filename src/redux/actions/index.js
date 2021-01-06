@@ -39,6 +39,19 @@ const actionCreatorCreatorWithData = actionType => payload => (dispatch,getState
   })
 }
 
+export const dataLoadAsync = (payload) => dispatch => {
+  const key = "FairyNote#DataSync"
+  chrome.storage.local.get([key], function (result) {
+    let savedState
+    if (result && result[key]) {
+      savedState = JSON.parse(LZString.decompressFromUTF16(result[key]));
+    }
+    if (!savedState) {
+      savedState = {}
+    }
+    dispatch(dataUpdate(savedState))
+  })
+}
 
 export const settingsLoadAsync = (payload) => dispatch => {
   const key = "FairyNote#Settings"
@@ -137,6 +150,7 @@ export const toggleSyncTimer = actionCreatorCreator(types.TOGGLE_SYNC_TIMER)
 
 export const dataUpdate = actionCreatorCreator(types.DATA_UPDATE)
 export const saveList = actionCreatorCreator(types.SAVE_LIST)
+
 
 export const toggleText = actionCreatorCreator(types.TOGGLE_TEXT)
 export const toggleHelp = actionCreatorCreator(types.TOGGLE_HELP)

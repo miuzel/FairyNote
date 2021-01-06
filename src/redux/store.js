@@ -15,7 +15,7 @@ let initialState = {
     },
     data: {
         actors: [],
-        notelist: []
+        notelist: {}
     },
     timeline: {
         mode: defaultSettings.defaultMode,
