@@ -6950,10 +6950,10 @@ react-dom@^17.0.1:
     object-assign "^4.1.1"
     scheduler "^0.20.1"
 
-react-frame-component@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.npm.taobao.org/react-frame-component/download/react-frame-component-4.1.3.tgz#64c09dd29574720879c5f43ee36c17d8ae74d4ec"
-  integrity sha1-ZMCd0pV0cgh5xfQ+42wX2K501Ow=
+react-frame-component@^5.0.0-alpha.0:
+  version "5.0.0-alpha.0"
+  resolved "https://registry.npm.taobao.org/react-frame-component/download/react-frame-component-5.0.0-alpha.0.tgz#703bcb06bcf4492485d7283dff3fc69f1a2910f7"
+  integrity sha1-cDvLBrz0SSSF1yg9/z/GnxopEPc=
 
 react-hot-loader@^4.13.0:
   version "4.13.0"

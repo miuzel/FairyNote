@@ -5,9 +5,14 @@ import Mousetrap from 'mousetrap'
 import 'mousetrap-global-bind'
 import { textCopy, itemAdd, itemFocus, itemUpdate, itemCopy,  timelineSave, videoGoto, videoGotoEnd, itemDel,itemBlur, saveList } from '../../../redux/actions';
 
+let init = {};
 
 export const bindShortcuts = (props, target_el) => {
     console.log("Registering keyboard shortcuts.")
+    if(init[target_el]){
+        console.log("already registered, ignore")
+        return
+    }
     let bindkey = (key, fn) => {
         let keysToBind = [""]
         let keys = key.toLowerCase().split("+").map(x => x.trim())
@@ -31,7 +36,7 @@ export const bindShortcuts = (props, target_el) => {
                 } 
                 fn()
             })
-            console.log(k + " binded.")
+            // console.log(k + " binded.")
             return k
         })
     }
@@ -40,6 +45,7 @@ export const bindShortcuts = (props, target_el) => {
     for (let shortcut of shortcuts) {
         bindkey(shortcut.key, shortcut.action)
     }
+    init[target_el] = true
     console.log("Keyboard shortcuts registered")
 }
 
