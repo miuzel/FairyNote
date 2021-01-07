@@ -1,6 +1,6 @@
 # FairyNote
 
-Boilerplate is from https://github.com/satendra02/react-chrome-extension.
+Boilerplate is from <https://github.com/satendra02/react-chrome-extension>.
 
 ## Description
 
@@ -89,7 +89,7 @@ The repo is available as open source under the terms of the [MIT License](http:/
 
 - Port to firefox.
 
-The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://addons.mozilla.org/en-US/firefox/addon/shortkeys/ and import the following configuration to disable these built-in shortcuts on youtube.com
+The keyboard shortcuts conflict with firefox built-in shortcuts. Try <https://addons.mozilla.org/en-US/firefox/addon/shortkeys/> and import the following configuration to disable these built-in shortcuts on youtube.com
 
 ```json
 [
@@ -106,7 +106,7 @@ The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://add
 
 ### Change 2.1.0
 
-- Add a set of new shortcuts to adjust time against latency issues. Select a timeline item, then use Ctrl/Command + Shift + , /  Ctrl/Command + Shift + . to add time latency deltas. The delta will be applied on all items following the current one. Enjoy the update. 
+- Add a set of new shortcuts to adjust time against latency issues. Select a timeline item, then use Ctrl/Command + Shift + , /  Ctrl/Command + Shift + . to add time latency deltas. The delta will be applied on all items following the current one. Enjoy the update.
 
 ### Change 2.0.3
 
@@ -135,7 +135,6 @@ The keyboard shortcuts conflict with firefox built-in shortcuts. Try https://add
 - You can change the locale of the extension in settings now. The locale no longer follows your browser.
 
 p.s. Please read the help page and remember those keyboard shortcuts which can boost your recording speed significantly
-
 
 ### How to build
 
