@@ -15,7 +15,6 @@ const FairyNoteFooter = props => {
       setSaving(1);
       setTimeout(()=> {
           timelineSave({ quiet: true })
-          saveList()
       },0);
     }
     const stopTimer = () => {
@@ -39,7 +38,9 @@ const FairyNoteFooter = props => {
     }
     
   }, [autoSave, saving, changed, timelineSave, autoSaveTimer]);
-
+  if (changed){
+    props.saveList()
+  }
   return (
     <div id="extensionfooter">
       © 2019 FairyNote --VERSION--{" "}
