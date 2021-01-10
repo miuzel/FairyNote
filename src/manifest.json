@@ -6,7 +6,7 @@
     "scripts": ["background.bundle.js"]
   },
   "default_locale": "zh_CN",
-  "permissions": [ "tabs", "storage","unlimitedStorage" ],
+  "permissions": [ "storage","unlimitedStorage" ],
   "page_action": {
     "default_title": "__MSG_extensionTooltip__",
     "default_icon": {
@@ -23,7 +23,7 @@
     "128": "icon128.png"
   },
   "content_scripts": [{
-    "matches": [ "*://www.youtube.com/*","*://*.bilibili.com/*" ,"*://odysee.com/*" ,"*://lbry.tv/*"  ],
+    "matches": ["http://*/*", "https://*/*", "<all_urls>"],
     "js": ["contentScript.bundle.js"],
     "css": ["content.styles.css","antd.min.css","fairynote.css"]
   }],

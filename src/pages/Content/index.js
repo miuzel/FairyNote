@@ -26,6 +26,18 @@ LoadLocales(()=>{
           toggle(app)
         });
       }
+      if (request.message === "url_change") {
+        if(initialized){
+          console.log("url change triggered. rerender.")
+          initialized = false
+          let show = app.classList.contains("show")
+          init(()=>{
+            if(!show){
+              toggle(app)
+            }
+          });
+        }
+      }
     }
   );
 
@@ -103,15 +115,18 @@ LoadLocales(()=>{
         render() {
             return (
                 <Frame key="appframe" head={[<link   key="link1" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./content.styles.css")} ></link>,
-                <link  key="link2" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./antd.min.css")} ></link>,
+                <link onLoad={() => {
+                  hideandDelete(loading, 20)
+                }} key="link2" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./antd.min.css")} ></link>,
                 <link  key="link3" type="text/css" rel="stylesheet" href={chrome.runtime.getURL("./fairynote.css")} ></link>]}> 
                    <FrameContextConsumer key="appframec">
                    {
                       ({document, window}) => {
                         return <FairyNote key="FairyNote" chrome={chrome} app={document.body} toggle={toggle.bind(null, app)}
-                        onLoad={() => {
-                          hideandDelete(loading, 1300)
-                        }} />
+                        // onLoad={() => {
+                        //   hideandDelete(loading, 300)
+                        // }} 
+                        />
                       }
                     }
                     </FrameContextConsumer>

@@ -36,19 +36,21 @@ class FairyNote extends Component {
     }
     bindOnload = () => {
         const { t } = this.props;
-        if(
-            document.URL.match(/youtube\.com\/watch\?v=.+/) ||
-            document.URL.match(/bilibili\.com\/video\/.+/) ||
-            document.URL.match(/odysee\.com\/.+/) ||
-            document.URL.match(/lbry.tv\/.+/) ||
-            document.URL.match(/localhost/) // test env
-        ){
-            console.log("url changed. Reload data.")
-            store.dispatch(timelineLoadAsync({ quiet: false }))
-        } else {
-            console.log("no video id found on " + document.URL)
-            message.warn(t("cannotFindVideoID"))
-        }
+        // if(
+        //     document.URL.match(/youtube\.com\/watch\?v=.+/) ||
+        //     document.URL.match(/bilibili\.com\/video\/.+/) ||
+        //     document.URL.match(/odysee\.com\/.+/) ||
+        //     document.URL.match(/lbry.tv\/.+/) ||
+        //     document.URL.match(/localhost/) // test env
+        // ){
+        //     console.log("url changed. Reload data.")
+        //     store.dispatch(timelineLoadAsync({ quiet: false }))
+        // } else {
+        //     console.log("no video id found on " + document.URL)
+        //     message.warn(t("cannotFindVideoID"))
+        // }
+        console.log("url changed. Reload data.")
+        store.dispatch(timelineLoadAsync({ quiet: false }))
     }
     
     render() {

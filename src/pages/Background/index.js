@@ -18,12 +18,14 @@ chrome.pageAction.onClicked.addListener(function (tab) {
  });
 
  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    console.log(changeInfo)
     if(changeInfo.status === 'complete'){
       chrome.pageAction.show(tabId);
-      //  if (tab.url.match(/https:\/\/www.youtube.com\/.*/)) {
-      //      chrome.pageAction.show(tabId);
-      //  } else {
-      //      chrome.pageAction.hide(tabId);
-      //  }
+    }
+    if(changeInfo.status === 'loading'){
+         chrome.tabs.sendMessage(
+           tabId,
+           { "message": "url_change" }
+         )
     }
  });
