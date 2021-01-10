@@ -100,5 +100,10 @@ export const getVideoId = () => {
     if (match){
         return "ODYSEE?"+match[1] //same as odysee(all lbry protocol)
     }
+    // other Pattern  https://lbry.tv/@SpiritScience:1/spirit-science-53-the-hero-s-journey:b
+    match = document.URL.match(/https?:\/\/([^\/]+)\/(.+)/);
+    if (match){
+        return match[1]+"?"+match[2] //normal websites. not guranteed.
+    }
     return 'localdata' 
 };

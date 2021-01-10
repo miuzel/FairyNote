@@ -1,6 +1,6 @@
 # FairyNote
 
-Boilerplate is from <https://github.com/satendra02/react-chrome-extension>.
+Boilerplate inspired by <https://github.com/satendra02/react-chrome-extension>. and <https://github.com/lxieyang/chrome-extension-boilerplate-react>
 
 ## Description
 
@@ -11,6 +11,11 @@ This is a chrome extension for those need to do manually indexing and adding out
 The repo is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
 ## FairyNote 2
+
+### Change 2.8.1
+
+- Remove tabs permission.
+- You can now try to use FairyNote on whatever website you like ( not guaranteed )
 
 ### Change 2.8.0
 
