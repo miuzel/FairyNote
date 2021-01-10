@@ -66,7 +66,7 @@ export const settingsLoadAsync = (payload) => dispatch => {
       savedState = defaultSettings
     }
     if (!payload.quiet) {
-      message.success("Successfully Loaded");
+      message.success("FairyNote2: Successfully Loaded");
     }
     dispatch(loadSettings(savedState))
   })
@@ -95,7 +95,7 @@ export const timelineLoadAsync = (payload) => (dispatch, getState) => {
       };
     }
     if (!payload.quiet) {
-      message.success("Successfully Loaded");
+      message.success("FairyNote2: Successfully Loaded");
     }
     dispatch(timelineLoaded(savedState))
   })
@@ -111,7 +111,7 @@ export const timelineImportAsync = (payload) => dispatch => {
       reader.onload = function (e) {
         let data = e.target.result
         if (!payload.quiet){
-          message.success("Successfully Imported");
+          message.success("FairyNote2: Successfully Imported");
         }
         dispatch(timelineImport({
           csvdata: data

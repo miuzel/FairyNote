@@ -87,23 +87,23 @@ export const getVideoId = () => {
     } 
     // Bilibili Pattern https://www.bilibili.com/video/BV1Jf4y1y7wQ?...
     match = document.URL.match(/bilibili.com\/video\/([^?]+)/);
-    if (match){
+    if (match && match[2]){
         return "BILIBILI?"+match[1] 
     }
     // Odysee Pattern https://odysee.com/@SpiritScience:1/spirit-science-53-the-hero-s-journey:b
     match = document.URL.match(/odysee.com\/([^?]+)/);
-    if (match){
+    if (match && match[2]){
         return "ODYSEE?"+match[1]
     }
     // LBRY Pattern  https://lbry.tv/@SpiritScience:1/spirit-science-53-the-hero-s-journey:b
     match = document.URL.match(/lbry.tv\/([^?]+)/);
-    if (match){
+    if (match && match[2]){
         return "ODYSEE?"+match[1] //same as odysee(all lbry protocol)
     }
     // other Pattern  https://lbry.tv/@SpiritScience:1/spirit-science-53-the-hero-s-journey:b
-    match = document.URL.match(/https?:\/\/([^\/]+)\/(.+)/);
-    if (match){
+    match = document.URL.match(/https?:\/\/([^/]+)\/(.*)/);
+    if (match && match[2]){
         return match[1]+"?"+match[2] //normal websites. not guranteed.
     }
-    return 'localdata' 
+    return '' 
 };

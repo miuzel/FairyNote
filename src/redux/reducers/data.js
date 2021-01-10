@@ -16,7 +16,7 @@ const data =  (state = initialState, { type, payload }) => {
             let nextState = state
             let file = {}
             let key = getVideoId()
-            if (key === ""){
+            if (key === "" || key === "/" || key === "localdata"){
                 console.log("no video id found on " + document.URL)
                 return nextState
             }

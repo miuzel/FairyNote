@@ -29,13 +29,15 @@ class FairyNote extends Component {
         super(props)
     }
     componentDidMount() {
-        setTimeout(() => {
-            this.props.onLoad()
-        }, 600)
+        if(this.props.onLoad){
+            setTimeout(() => {
+                this.props.onLoad()
+            }, 600)
+        }
         this.bindOnload()
     }
     bindOnload = () => {
-        const { t } = this.props;
+        // const { t } = this.props;
         // if(
         //     document.URL.match(/youtube\.com\/watch\?v=.+/) ||
         //     document.URL.match(/bilibili\.com\/video\/.+/) ||
