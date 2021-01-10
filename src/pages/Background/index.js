@@ -8,7 +8,6 @@ import '../../assets/img/icon32.png';
 import '../../assets/img/icon48.png';
 import '../../assets/img/icon128.png';
 import '../../assets/img/icon.svg';
-let init = false
 // Called when the user clicks on the page action
 chrome.browserAction.onClicked.addListener(function (tab) {
     // Send a message to the active tab
