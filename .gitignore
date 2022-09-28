@@ -25,3 +25,6 @@ yarn-error.log*
 .history/
 
 *.zip
+
+#vscode
+/.vscode
